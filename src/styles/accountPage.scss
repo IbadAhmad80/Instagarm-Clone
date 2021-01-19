@@ -52,7 +52,7 @@ body {
     transition: 0.7s;
     &:hover {
       cursor: pointer;
-      color: maroon;
+      color: black;
     }
   }
 }
@@ -70,7 +70,7 @@ body {
 }
 
 .reset {
-  @include Container(4vh 32vw, default);
+  @include Container(4vh 34vw, default);
   .reset-from {
     @include forms(default);
     input {
@@ -82,13 +82,13 @@ body {
     margin: 1vh 9vw 2vh 9vw;
     padding: 1.5vh 1.2vw;
     transition: 0.6s;
-    border-color: gray;
     outline: none;
     font-weight: bold;
     background-color: rgb(119, 119, 190);
+    color: white;
+    border-radius: 5px;
     &:hover {
       background-color: maroon;
-      color: white;
       cursor: pointer;
     }
   }

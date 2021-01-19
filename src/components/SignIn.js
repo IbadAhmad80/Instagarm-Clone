@@ -39,7 +39,7 @@ export default function SignIn() {
     <div>
       <div className="SignIn">
         <img
-          style={{ margin: "0vh 2vw 0vh 0vw" }}
+          style={{ margin: "0vh 2vw 6vh 0vw" }}
           src={landing_page}
           alt="landing img"
         />
@@ -120,7 +120,7 @@ export default function SignIn() {
           </form>
 
           <div className="alternative-option">
-            <div>Already have an account? </div>
+            <div>Don't have ann account yet? </div>
             <button
               onClick={(e) => {
                 e.preventDefault();

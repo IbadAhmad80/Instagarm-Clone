@@ -120,7 +120,7 @@ export default function SignUp() {
         </div>
       </form>
       <div className="alternative-option">
-        <div>Dont't have an account yet? </div>
+        <div>Already got an account? </div>
         <button
           onClick={(e) => {
             e.preventDefault();

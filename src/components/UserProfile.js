@@ -67,7 +67,7 @@ export default function UserProfile() {
       <h2>{displayName && displayName}</h2>
       <h2>
         {(photoURL || photoLiterals) && photoURL !== null ? (
-          <img src={photoURL} alt="cant find display img" />
+          <img src={photoURL} alt="cant find display img" style={imageStyle} />
         ) : (photoURL || photoLiterals) && photoURL === null ? (
           <div style={imageStyle}>{photoLiterals}</div>
         ) : (

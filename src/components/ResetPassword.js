@@ -34,7 +34,16 @@ export default function ResetPassword() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter Email"
         />
-        <h6>{error && error}</h6>
+        <h6
+          style={{
+            color: "red",
+            fontSize: "1.1vw",
+            paddingLeft: "3vw",
+            margin: "0vh 0 1vh 10",
+          }}
+        >
+          {error && error}
+        </h6>
         <button className="send-email" type="submit">
           Send Reset Link
         </button>
@@ -56,7 +65,7 @@ export default function ResetPassword() {
             history.push("./signUp");
           }}
         >
-          Sign Up
+          Create New
         </button>
       </div>
     </div>
