@@ -17,7 +17,6 @@ export default function UserProfile() {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        // console.log(user);
         // console.log("user logged in: ", user.displayName, user.email);
         if (user.displayName !== null) {
           dispatch(logIn(user.email, user.displayName, user.photoURL, null));
@@ -62,18 +61,28 @@ export default function UserProfile() {
   const photoURL = useSelector((state) => state.photoURL);
   const email = useSelector((state) => state.email);
   const photoLiterals = useSelector((state) => state.photoLiterals);
-  return (
+  return true ? (
     <div>
       <h2>{email && email}</h2>
       <h2>{displayName && displayName}</h2>
       <h2>
-        {photoURL !== null ? (
+        {(photoURL || photoLiterals) && photoURL !== null ? (
           <img src={photoURL} alt="cant find display img" />
-        ) : (
+        ) : (photoURL || photoLiterals) && photoURL === null ? (
           <div style={imageStyle}>{photoLiterals}</div>
+        ) : (
+          "Loading"
         )}
       </h2>
-      <button
+
+      <div
+        style={{
+          padding: (photoURL || photoLiterals) && "0.4vw 0.6vw",
+          border: (photoURL || photoLiterals) && "1px solid gray",
+          backgroundColor: (photoURL || photoLiterals) && "beige",
+          width: (photoURL || photoLiterals) && "4vw",
+          cursor: (photoURL || photoLiterals) && "pointer",
+        }}
         onClick={(e) => {
           e.preventDefault();
           auth.signOut();
@@ -81,8 +90,10 @@ export default function UserProfile() {
           dispatch(signOut());
         }}
       >
-        Sign out
-      </button>
+        {(photoURL || photoLiterals) && "Sign out"}
+      </div>
     </div>
+  ) : (
+    <div>Loading</div>
   );
 }

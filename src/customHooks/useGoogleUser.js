@@ -4,7 +4,7 @@ import { logIn } from "../components/redux/actions";
 
 export const useSignInWithGoogle = (auth, googleAuth, method) => {
   const dispatch = useDispatch();
-  if (method !== "google") return;
+  if (method !== "google") return true;
   auth
     .signInWithPopup(googleAuth)
     .then((result) => {
@@ -28,4 +28,5 @@ export const useSignInWithGoogle = (auth, googleAuth, method) => {
         `Response returned with status code ${errorCode} and message ${errorMessage} after signing in with email ${email}`
       );
     });
+  return true;
 };

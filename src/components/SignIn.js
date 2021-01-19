@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { auth } from "../FirebaseConfig";
+import "../styles/accountPage.scss";
+import landing_page from "../assets/landing_page.jpg";
+import app_store from "../assets/app_store.jpg";
+import play_store from "../assets/play_store.jpg";
+import { AiOutlineGoogle } from "react-icons/ai";
 
 export default function SignIn() {
   const history = useHistory();
@@ -32,58 +37,107 @@ export default function SignIn() {
 
   return (
     <div>
-      <form
-        className="SignInForm"
-        onSubmit={(e) => {
-          handleSubmit(e);
-        }}
-      >
-        <h2>Sign In</h2>
-        <br />
-        <label>Email</label>
-        <br />
-        <input
-          className={"userEmail"}
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          placeholder="Your Email"
+      <div className="SignIn">
+        <img
+          style={{ margin: "14vh 2vw 24vh 0vw" }}
+          src={landing_page}
+          alt="landing img"
         />
-        <br />
-        <label>Password:</label>
-        <br />
-        <input
-          className={"userPassword"}
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          placeholder="Your Password"
-        />
-        <h6>{error && error}</h6>
-        <br />
-        <input type="submit" value="Submit" />
-      </form>
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          history.push("./signUp");
-        }}
-      >
-        Sign Up
-      </button>
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          history.push({
-            pathname: "./profile",
-            method: "google",
-          });
-        }}
-      >
-        Sign in with goggle
-      </button>
+        <div>
+          <form
+            onSubmit={(e) => {
+              handleSubmit(e);
+            }}
+          >
+            <div className="form">
+              <h5 className="insta-heading">Instagram</h5>
+              <input
+                className={"userEmail"}
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                placeholder="Your Email"
+              />
+              <input
+                className={"userPassword"}
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                placeholder="Your Password"
+              />
+              <h6 style={{ color: "red", fontSize: "1.2vw" }}>
+                {error && error}
+              </h6>
+
+              <button type="submit" className="submit-btn">
+                Submit
+              </button>
+              <h6 class="privacy">
+                By signing up, you agree to our Terms , Data Policy and Cookies
+                Policy .
+              </h6>
+              <div
+                style={{
+                  padding: "0vw 0vw 0vw 3vw",
+                  fontFamily: "'Balsamiq Sans', cursive",
+                }}
+              >
+                _____________ OR _____________
+              </div>
+
+              <div className="goggle-sign-in">
+                <AiOutlineGoogle />
+                <h6
+                  className="google-btn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    history.push({
+                      pathname: "./profile",
+                      method: "google",
+                    });
+                  }}
+                >
+                  Login in with Goggle
+                </h6>
+              </div>
+              <button
+                className="forgot-password"
+                onClick={(e) => {
+                  e.preventDefault();
+                  history.push("./resetPassword");
+                }}
+              >
+                Forgot Passowrd ?
+              </button>
+            </div>
+          </form>
+
+          <div className="alternative-option">
+            <div>Already have an account? </div>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                history.push("./signUp");
+              }}
+            >
+              Sign Up
+            </button>
+          </div>
+          <br />
+          <br />
+          <img
+            src={app_store}
+            alt="app store"
+            onClick={
+              "https://itunes.apple.com/app/instagram/id389801252?pt=428156&ct=igweb.loginPage.badge&mt=8&vt=lo"
+            }
+          />
+          <img src={play_store} alt="play store" />
+          {/* https://play.google.com/store/apps/details?id=com.instagram.android&referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26ig_mid%3DD77C7CE3-6112-4F52-A360-C3FC16EFEE65%26utm_content%3Dlo%26utm_medium%3Dbadge */}
+        </div>
+      </div>
     </div>
   );
 }

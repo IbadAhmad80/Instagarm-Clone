@@ -3,7 +3,7 @@ import { firestore } from "../FirebaseConfig";
 import { logIn } from "../components/redux/actions";
 export const useGenerateUserDocument = async (user, method) => {
   const dispatch = useDispatch();
-  if (!user) return;
+  if (!user) return true;
   if (method === "signup") {
     const { email, displayName, photoURL } = user;
     let firstName = displayName.split(" ")[0];
@@ -37,4 +37,5 @@ export const useGenerateUserDocument = async (user, method) => {
         console.log("Error getting documents", err);
       });
   }
+  return true;
 };

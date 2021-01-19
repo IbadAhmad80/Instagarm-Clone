@@ -1,0 +1,125 @@
+$primary-color: #fbf7f7;
+$primary-font: "Balsamiq Sans", cursive;
+
+@mixin Container($margins, $display) {
+  display: $display;
+  margin: $margins;
+  flex-direction: row;
+  justify-content: space-between;
+}
+@mixin forms($flex) {
+  padding: 0vh 1vw;
+  border: 1px solid rgb(112, 112, 119);
+  background-color: white;
+  flex: $flex;
+}
+@mixin images() {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../assets/landing_page.jpg);
+}
+@mixin input() {
+  background-color: $primary-color;
+  height: 2.6vh;
+  width: 20vw;
+  outline: none;
+  padding: 1.3vh 1vw;
+  margin: 1vh 0vh 1vh 3vw;
+  boder: none;
+  border-radius: 5px;
+}
+
+body {
+  background-color: $primary-color;
+}
+.SignIn {
+  @include Container(5vh 19vw, flex);
+  .form {
+    @include forms(1);
+    input {
+      @include input();
+    }
+  }
+  .forgot-password {
+    padding: 0vh 0vw 1.5vh 9vw;
+    font-size: 1.1vw;
+    font-family: $primary-font;
+    color: rgb(47, 47, 134);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transition: 0.7s;
+    &:hover {
+      cursor: pointer;
+      color: maroon;
+    }
+  }
+}
+.img {
+  @include images();
+}
+.SignUp {
+  @include Container(10vh 33.5vw, default);
+  .form {
+    @include forms(default);
+    input {
+      @include input();
+    }
+  }
+}
+
+.goggle-sign-in {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 4vh 2vw;
+  color: maroon;
+  .google-btn {
+    margin: 0;
+    font-size: 1.3vw;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
+}
+.submit-btn {
+  background-color: rgb(119, 119, 190);
+  height: 5vh;
+  width: 22.5vw;
+  color: #fbf7f7;
+  outline-color: black;
+  padding: 1.3vh 1vw;
+  margin: 0vh 0vw 1.6vh 3vw;
+  border-color: gray;
+  border-radius: 5px;
+  transition: 0.5s;
+  &:hover {
+    cursor: pointer;
+    color: white;
+    background-color: maroon;
+  }
+}
+.privacy {
+  text-align: center;
+  padding: auto auto;
+  font-size: 1.9vh;
+  color: gray;
+  font-family: $primary-font;
+}
+
+h5 {
+  margin: 3vh 0 6vh 0;
+  font-size: 3vw;
+  text-align: center;
+  font-family: "Lobster", cursive;
+  font-weight: bolder;
+}
+.alternative-option {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 2vh 0vw;
+  background-color: white;
+  padding: 6vh 2vw;
+
+  border: 1px solid gray;
+}
