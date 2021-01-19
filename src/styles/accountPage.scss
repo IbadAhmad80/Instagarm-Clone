@@ -33,7 +33,7 @@ body {
   background-color: $primary-color;
 }
 .SignIn {
-  @include Container(5vh 19vw, flex);
+  @include Container(5vh 18.5vw, flex);
   .form {
     @include forms(1);
     input {
@@ -41,8 +41,9 @@ body {
     }
   }
   .forgot-password {
-    padding: 0vh 0vw 1.5vh 9vw;
-    font-size: 1.1vw;
+    padding: 0vh 0vw 1.5vh 11vw;
+    font-size: 0.9vw;
+    font-weight: bold;
     font-family: $primary-font;
     color: rgb(47, 47, 134);
     background-color: transparent;
@@ -68,15 +69,45 @@ body {
   }
 }
 
+.reset {
+  @include Container(4vh 32vw, default);
+  .reset-from {
+    @include forms(default);
+    input {
+      @include input();
+    }
+  }
+  .send-email,
+  .back-to-sign-in {
+    margin: 1vh 9vw 2vh 9vw;
+    padding: 1.5vh 1.2vw;
+    transition: 0.6s;
+    border-color: gray;
+    outline: none;
+    font-weight: bold;
+    background-color: rgb(119, 119, 190);
+    &:hover {
+      background-color: maroon;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
 .goggle-sign-in {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin: 4vh 7vw;
+  margin: 3vh 7vw 1.5vh 7vw;
+
   color: maroon;
+  div {
+    font-size: 4vh;
+  }
   .google-btn {
-    margin: 0;
-    font-size: 1.1vw;
+    margin: 0 0 0 0;
+    padding-top: 0.7vh;
+    font-size: 1.15vw;
     font-family: $primary-font;
     transition: 0.7s;
     &:hover {
@@ -107,6 +138,7 @@ body {
 }
 .privacy {
   text-align: center;
+  margin: 3vh 0vw 1.7vh 0vw;
   padding: auto auto;
   font-size: 1.9vh;
   color: gray;
@@ -114,10 +146,11 @@ body {
 }
 
 h5 {
-  margin: 3vh 0 6vh 0;
-  font-size: 3vw;
+  margin: 2vh 0 6vh 0;
+  font-size: 4vw;
   text-align: center;
-  font-family: "Lobster", cursive;
+  letter-spacing: 0.09cm;
+  font-family: "Cookie", cursive;
   font-weight: bolder;
 }
 .alternative-option {
@@ -135,27 +168,4 @@ h5 {
   flex-direction: row;
   justify-content: space-around;
   cursor: pointer;
-}
-
-.reset-from {
-  background-color: white;
-  margin: 4vh 32vw;
-  border: 1px solid black;
-  padding: 2vh 3vw;
-  input {
-    @include input();
-  }
-}
-.send-email,
-.back-to-sign-in {
-  margin: 2vh 9vw;
-  padding: 1vh 3vw;
-  transition: 0.6s;
-  border-color: gray;
-  outline: none;
-  &:hover {
-    background-color: maroon;
-    color: white;
-    cursor: pointer;
-  }
 }

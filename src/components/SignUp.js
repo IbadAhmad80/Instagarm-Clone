@@ -81,7 +81,9 @@ export default function SignUp() {
           required
           placeholder="Your Password"
         />
-        <h6 style={{ color: "red", fontSize: "1.2vw" }}>{error && error}</h6>
+        <h6 style={{ color: "red", fontSize: "1.2vw", paddingLeft: "3vw" }}>
+          {error && error}
+        </h6>
         <button type="submit" className="submit-btn">
           Submit
         </button>

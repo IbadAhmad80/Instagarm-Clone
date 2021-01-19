@@ -39,7 +39,7 @@ export default function SignIn() {
     <div>
       <div className="SignIn">
         <img
-          style={{ margin: "5vh 2vw 40vh 0vw" }}
+          style={{ margin: "0vh 2vw 0vh 0vw" }}
           src={landing_page}
           alt="landing img"
         />
@@ -67,7 +67,9 @@ export default function SignIn() {
                 required
                 placeholder="Your Password"
               />
-              <h6 style={{ color: "red", fontSize: "1.2vw" }}>
+              <h6
+                style={{ color: "red", fontSize: "1.2vw", paddingLeft: "3vw" }}
+              >
                 {error && error}
               </h6>
 

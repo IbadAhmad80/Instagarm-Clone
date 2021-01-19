@@ -24,8 +24,8 @@ export default function ResetPassword() {
       });
   };
   return (
-    <div>
-      <form className="reset-from" onSubmit={handleResetButton}>
+    <div className="reset">
+      <form onSubmit={handleResetButton} className="reset-from">
         <h5 className="instagarm-heading">Instagarm</h5>
         <input
           type="email"
@@ -36,7 +36,7 @@ export default function ResetPassword() {
         />
         <h6>{error && error}</h6>
         <button className="send-email" type="submit">
-          Send Email
+          Send Reset Link
         </button>
         <button
           className="back-to-sign-in"
@@ -48,6 +48,17 @@ export default function ResetPassword() {
           Back to Sign In?
         </button>
       </form>
+      <div className="alternative-option">
+        <div>Having Trouble finding ? </div>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            history.push("./signUp");
+          }}
+        >
+          Sign Up
+        </button>
+      </div>
     </div>
   );
 }
