@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { auth } from "../FirebaseConfig";
+import "../styles/accountPage.scss";
 
 export default function ResetPassword() {
   const history = useHistory();
@@ -24,7 +25,8 @@ export default function ResetPassword() {
   };
   return (
     <div>
-      <form onSubmit={handleResetButton}>
+      <form className="reset-from" onSubmit={handleResetButton}>
+        <h5 className="instagarm-heading">Instagarm</h5>
         <input
           type="email"
           required
@@ -33,16 +35,19 @@ export default function ResetPassword() {
           placeholder="Enter Email"
         />
         <h6>{error && error}</h6>
-        <button type="submit">Send Email</button>
+        <button className="send-email" type="submit">
+          Send Email
+        </button>
+        <button
+          className="back-to-sign-in"
+          onClick={(e) => {
+            e.preventDefault();
+            history.push("./");
+          }}
+        >
+          Back to Sign In?
+        </button>
       </form>
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          history.push("./");
-        }}
-      >
-        Back to Sign In?
-      </button>
     </div>
   );
 }

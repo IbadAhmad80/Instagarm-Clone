@@ -72,13 +72,20 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin: 4vh 2vw;
+  margin: 4vh 7vw;
   color: maroon;
   .google-btn {
     margin: 0;
-    font-size: 1.3vw;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    font-size: 1.1vw;
+    font-family: $primary-font;
+    transition: 0.7s;
+    &:hover {
+      cursor: pointer;
+      color: black;
+    }
+  }
+  div {
+    cursor: pointer;
   }
 }
 .submit-btn {
@@ -86,10 +93,10 @@ body {
   height: 5vh;
   width: 22.5vw;
   color: #fbf7f7;
-  outline-color: black;
+  outline: none;
   padding: 1.3vh 1vw;
-  margin: 0vh 0vw 1.6vh 3vw;
-  border-color: gray;
+  margin: 0vh 0vw 0vh 3vw;
+  border: none;
   border-radius: 5px;
   transition: 0.5s;
   &:hover {
@@ -120,6 +127,35 @@ h5 {
   margin: 2vh 0vw;
   background-color: white;
   padding: 6vh 2vw;
-
   border: 1px solid gray;
+}
+.download-options {
+  margin: 2vh 4vw 0vh 4vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  cursor: pointer;
+}
+
+.reset-from {
+  background-color: white;
+  margin: 4vh 32vw;
+  border: 1px solid black;
+  padding: 2vh 3vw;
+  input {
+    @include input();
+  }
+}
+.send-email,
+.back-to-sign-in {
+  margin: 2vh 9vw;
+  padding: 1vh 3vw;
+  transition: 0.6s;
+  border-color: gray;
+  outline: none;
+  &:hover {
+    background-color: maroon;
+    color: white;
+    cursor: pointer;
+  }
 }

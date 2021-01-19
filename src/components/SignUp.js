@@ -91,7 +91,7 @@ export default function SignUp() {
         </h6>
         <div
           style={{
-            padding: "0vw 0vw 0vw 3vw",
+            paddingLeft: "3vw",
             fontFamily: "'Balsamiq Sans', cursive",
           }}
         >
@@ -128,12 +128,17 @@ export default function SignUp() {
           Sign In
         </button>
       </div>
-      <br />
-      <br />
-      <img src={app_store} alt="app store" />
-      {/* https://itunes.apple.com/app/instagram/id389801252?pt=428156&ct=igweb.loginPage.badge&mt=8&vt=lo */}
-      <img src={play_store} alt="play store" />
-      {/* https://play.google.com/store/apps/details?id=com.instagram.android&referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26ig_mid%3DD77C7CE3-6112-4F52-A360-C3FC16EFEE65%26utm_content%3Dlo%26utm_medium%3Dbadge */}
+      <div className="download-options">
+        <img
+          src={app_store}
+          alt="app store"
+          onClick={
+            "https://itunes.apple.com/app/instagram/id389801252?pt=428156&ct=igweb.loginPage.badge&mt=8&vt=lo"
+          }
+        />
+        <img src={play_store} alt="play store" />{" "}
+        {/* https://play.google.com/store/apps/details?id=com.instagram.android&referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26ig_mid%3DD77C7CE3-6112-4F52-A360-C3FC16EFEE65%26utm_content%3Dlo%26utm_medium%3Dbadge */}
+      </div>{" "}
     </div>
   );
 }
