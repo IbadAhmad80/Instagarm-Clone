@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { auth } from "../FirebaseConfig";
-import "../styles/accountPage.scss";
-import landing_page from "../assets/landing_page.jpg";
-import app_store from "../assets/app_store.jpg";
-import play_store from "../assets/play_store.jpg";
+import { auth } from "../../FirebaseConfig";
+import "../../styles/accountPage.scss";
+import landing_page from "../../assets/landing_page.jpg";
+import app_store from "../../assets/app_store.jpg";
+import play_store from "../../assets/play_store.jpg";
 import { AiOutlineGoogle } from "react-icons/ai";
 
 export default function SignIn() {

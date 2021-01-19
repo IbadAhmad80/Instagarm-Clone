@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { auth } from "../FirebaseConfig";
+import { auth } from "../../FirebaseConfig";
 import { useHistory } from "react-router-dom";
-import "../styles/accountPage.scss";
-import app_store from "../assets/app_store.jpg";
-import play_store from "../assets/play_store.jpg";
+import "../../styles/accountPage.scss";
+import app_store from "../../assets/app_store.jpg";
+import play_store from "../../assets/play_store.jpg";
 import { AiOutlineGoogle } from "react-icons/ai";
 
 export default function SignUp() {

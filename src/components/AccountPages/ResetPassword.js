@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { auth } from "../FirebaseConfig";
-import "../styles/accountPage.scss";
+import { auth } from "../../FirebaseConfig";
+import "../../styles/accountPage.scss";
 
 export default function ResetPassword() {
   const history = useHistory();

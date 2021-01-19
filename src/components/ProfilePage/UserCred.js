@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { auth, googleAuth, firestore } from "../FirebaseConfig";
-import { useGenerateUserDocument } from "../customHooks/useGenerateUser";
-import { useSignInWithGoogle } from "../customHooks/useGoogleUser";
+import { auth, googleAuth, firestore } from "../../FirebaseConfig";
+import { useGenerateUserDocument } from "../../customHooks/useGenerateUser";
+import { useSignInWithGoogle } from "../../customHooks/useGoogleUser";
 import { useLocation, useHistory } from "react-router-dom";
-import { signOut } from "../components/redux/actions";
+import { signOut } from "../redux/actions";
 import { useDispatch } from "react-redux";
-import { logIn } from "../components/redux/actions";
+import { logIn } from "../redux/actions";
 
 export default function UserProfile() {
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ export default function UserProfile() {
   const email = useSelector((state) => state.email);
   const photoLiterals = useSelector((state) => state.photoLiterals);
   return true ? (
-    <div>
+    <div style={{ display: "flex", justifyContent: "space-around" }}>
       <h2>{email && email}</h2>
       <h2>{displayName && displayName}</h2>
       <h2>
