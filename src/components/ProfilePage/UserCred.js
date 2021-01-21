@@ -62,7 +62,13 @@ export default function UserProfile() {
   const email = useSelector((state) => state.email);
   const photoLiterals = useSelector((state) => state.photoLiterals);
   return true ? (
-    <div style={{ display: "flex", justifyContent: "space-around" }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-around",
+        margin: "0 0 0 0",
+      }}
+    >
       <h2>{email && email}</h2>
       <h2>{displayName && displayName}</h2>
       <h2>

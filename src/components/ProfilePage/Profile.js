@@ -1,20 +1,15 @@
 import React, { useState } from "react";
 
 import UploadForm from "./UploadForm";
-import ImageGrid from "./ImageGrid";
+import Posts from "./Posts";
 import Modal from "./Modal";
 import "../../styles/index.css";
 
 function Profile() {
-  const [selectedImg, setSelectedImg] = useState(null);
-
   return (
     <div className="App">
       <UploadForm />
-      <ImageGrid setSelectedImg={setSelectedImg} />
-      {selectedImg && (
-        <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
-      )}
+      <Posts setSelectedImg={setSelectedImg} />
     </div>
   );
 }

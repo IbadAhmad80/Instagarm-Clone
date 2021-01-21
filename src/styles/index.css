@@ -2,14 +2,15 @@
 
 :root {
   --primary: #efb6b2;
-  --secondary: #4e4e4e;
+  --secondary: #fbf7f7;
   --error: #ff4a4a;
 }
 
 /* base styles & title */
 body {
   font-family: "Noto Serif";
-  color: var(--secondary);
+  color: black;
+  background-color: var(--secondary);
 }
 .App {
   max-width: 960px;
@@ -73,27 +74,21 @@ label:hover {
 
 /* image grid styles */
 .img-grid {
-  margin: 20px auto;
   display: flex;
   flex-direction: column;
-  max-width: 20vw;
+  max-width: 40vw;
 }
 .img-wrap {
-  overflow: hidden;
-  height: 0;
-  padding: 50% 0 100% 0;
-  margin: 2vh 0 2vh 0;
-  /* padding controls height, will always be perfectly square regardless of width */
-  position: relative;
-  opacity: 0.8;
+  border: 2px solid gray;
+  width: 54vw;
+  margin-bottom: 5vh;
+  background-color: white;
+  margin-left: -5vw;
 }
 .img-wrap img {
-  min-width: 100%;
-  min-height: 100%;
-  max-width: 150%;
-  position: absolute;
-  top: 0;
-  left: 0;
+  width: 46vw;
+  height: 50vh;
+  padding: 5vh 4vw 1vh 4vw;
 }
 
 /* modal styles */

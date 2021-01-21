@@ -1,0 +1,30 @@
+$primary-color: #fbf7f7;
+$primary-font: "Balsamiq Sans", cursive;
+
+@mixin Container($margins, $display) {
+  display: $display;
+  margin: $margins;
+  flex-direction: row;
+  justify-content: space-between;
+}
+@mixin forms($flex) {
+  padding: 0vh 1vw;
+  border: 1px solid rgb(112, 112, 119);
+  background-color: white;
+  flex: $flex;
+}
+@mixin images() {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url(../assets/landing_page.jpg);
+}
+@mixin input() {
+  background-color: $primary-color;
+  height: 2.6vh;
+  width: 20vw;
+  outline: none;
+  padding: 1.3vh 1vw;
+  margin: 1vh 0vh 1vh 3vw;
+  boder: none;
+  border-radius: 5px;
+}

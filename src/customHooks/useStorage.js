@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 import { storage, firestore, timestamp } from "../FirebaseConfig";
+import { useSelector } from "react-redux";
 
-const useStorage = (file) => {
+const useStorage = (file, caption) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
+  const email = useSelector((state) => state.email);
 
   useEffect(() => {
     // references
     const storageRef = storage.ref(file.name);
-    const collectionRef = firestore.collection("images");
+    const collectionRef = firestore.collection("posts");
 
     storageRef.put(file).on(
       "state_changed",
@@ -23,7 +25,15 @@ const useStorage = (file) => {
       async () => {
         const url = await storageRef.getDownloadURL();
         const createdAt = timestamp();
-        await collectionRef.add({ url, createdAt });
+        await collectionRef.add({
+          url,
+          createdAt,
+          caption,
+          likes: 0,
+          userEmail: email,
+          commentMakers: [],
+          comments: [],
+        });
         setUrl(url);
       }
     );

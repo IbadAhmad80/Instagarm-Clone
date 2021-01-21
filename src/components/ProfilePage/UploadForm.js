@@ -4,6 +4,8 @@ import ProgressBar from "./ProgressBar";
 const UploadForm = () => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
+  const [caption, setCaption] = useState("");
+  const [post, setPost] = useState(false);
 
   const types = ["image/png", "image/jpeg", "image/jpg", "image/webp"];
 
@@ -20,17 +22,43 @@ const UploadForm = () => {
   };
 
   return (
-    <form className="upload-form">
-      <label>
-        <input type="file" onChange={handleChange} />
-        <span>+</span>
-      </label>
-      <div className="output">
-        {error && <div className="error">{error}</div>}
-        {file && <div>{file.name}</div>}
-        {file && <ProgressBar file={file} setFile={setFile} />}
-      </div>
-    </form>
+    <div>
+      <h3>Create a Post</h3>
+      <form className="upload-form">
+        <input
+          className="caption"
+          type="text"
+          vlaue={caption}
+          onChange={(e) => setCaption(e.target.value)}
+        />
+        <label>
+          <input type="file" onChange={handleChange} />
+          <span>+</span>
+        </label>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            setPost(true);
+          }}
+        >
+          POST
+        </button>
+
+        <div className="output">
+          {error && <div className="error">{error}</div>}
+          {file && <div>{file.name}</div>}
+          {file && post === true && (
+            <ProgressBar
+              file={file}
+              caption={caption}
+              setFile={setFile}
+              setPost={setPost}
+              setCaption={setCaption}
+            />
+          )}
+        </div>
+      </form>
+    </div>
   );
 };
 

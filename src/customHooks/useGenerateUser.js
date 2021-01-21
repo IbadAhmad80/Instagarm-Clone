@@ -5,7 +5,7 @@ export const useGenerateUserDocument = async (user, method) => {
   const dispatch = useDispatch();
   if (!user) return true;
   if (method === "signup") {
-    const { email, displayName, photoURL } = user;
+    const { email, displayName } = user;
     let firstName = displayName.split(" ")[0];
     let lastName = displayName.split(" ")[1];
     firstName = firstName.toUpperCase();

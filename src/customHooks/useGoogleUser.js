@@ -13,6 +13,7 @@ export const useSignInWithGoogle = (auth, googleAuth, method) => {
 
       // This gives you a Google Access Token. You can use it to access the Google API.
       var token = credential.accessToken;
+      console.log("google access token", token);
       // The signed-in user info.
       let user = result.user;
       // console.log("user info", user.email, user.displayName, user.photoURL);
