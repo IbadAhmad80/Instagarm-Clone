@@ -7,6 +7,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import { signOut } from "../redux/actions";
 import { useDispatch } from "react-redux";
 import { logIn } from "../redux/actions";
+import { FaLocationArrow } from "react-icons/fa";
 
 export default function UserProfile() {
   const dispatch = useDispatch();
@@ -57,21 +58,32 @@ export default function UserProfile() {
     margin: "20px 4px",
   };
 
-  const displayName = useSelector((state) => state.displayName);
+  // const displayName = useSelector((state) => state.displayName);
   const photoURL = useSelector((state) => state.photoURL);
-  const email = useSelector((state) => state.email);
+  // const email = useSelector((state) => state.email);
   const photoLiterals = useSelector((state) => state.photoLiterals);
   return true ? (
     <div
       style={{
         display: "flex",
-        justifyContent: "space-around",
-        margin: "0 0 0 0",
+        justifyContent: "space-between",
+        margin: "0 2vw 0 2vw",
       }}
     >
-      <h2>{email && email}</h2>
-      <h2>{displayName && displayName}</h2>
-      <h2>
+      <h5
+        onClick={(e) => {
+          e.preventDefault();
+          history.push({
+            pathname: "./profile",
+          });
+        }}
+        style={{ cursor: "pointer" }}
+      >
+        Instagram
+      </h5>
+      {/* <h2>{email && email}</h2>
+      <h2>{displayName && displayName}</h2> */}
+      {/* <h2>
         {(photoURL || photoLiterals) && photoURL !== null ? (
           <img src={photoURL} alt="cant find display img" style={imageStyle} />
         ) : (photoURL || photoLiterals) && photoURL === null ? (
@@ -79,14 +91,26 @@ export default function UserProfile() {
         ) : (
           "Loading"
         )}
+      </h2> */}
+      <h2
+        onClick={(e) => {
+          e.preventDefault();
+          history.push({
+            pathname: "./friendsFeed",
+            type: "friends",
+          });
+        }}
+        style={{ cursor: "pointer" }}
+      >
+        <FaLocationArrow />
       </h2>
 
       <div
         style={{
+          margin: "3.5vh 0vw 9.5vh 0vw ",
           padding: (photoURL || photoLiterals) && "0.4vw 0.6vw",
           border: (photoURL || photoLiterals) && "1px solid gray",
           backgroundColor: (photoURL || photoLiterals) && "beige",
-          width: (photoURL || photoLiterals) && "4vw",
           cursor: (photoURL || photoLiterals) && "pointer",
         }}
         onClick={(e) => {

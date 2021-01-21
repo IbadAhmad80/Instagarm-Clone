@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ProgressBar from "./ProgressBar";
+import { AiFillCamera } from "react-icons/ai";
 
 const UploadForm = () => {
   const [file, setFile] = useState(null);
@@ -11,7 +12,6 @@ const UploadForm = () => {
 
   const handleChange = (e) => {
     let selected = e.target.files[0];
-
     if (selected && types.includes(selected.type)) {
       setFile(selected);
       setError("");
@@ -22,31 +22,56 @@ const UploadForm = () => {
   };
 
   return (
-    <div>
-      <h3>Create a Post</h3>
-      <form className="upload-form">
+    <div className="upload-form">
+      <h3 className="create-post">Create a Post</h3>
+      <form>
         <input
           className="caption"
           type="text"
           vlaue={caption}
+          placeholder="Post Caption .."
           onChange={(e) => setCaption(e.target.value)}
         />
-        <label>
-          <input type="file" onChange={handleChange} />
-          <span>+</span>
-        </label>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            setPost(true);
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            margin: "3vh 0vw 0vh 0vw",
           }}
         >
-          POST
-        </button>
+          <label>
+            <input type="file" onChange={handleChange} />
+            <span style={{ fontSize: "6vh" }}>
+              <AiFillCamera />
+            </span>
+          </label>
+
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setPost(true);
+              !file && setError("Kindly select any Media to be uploded");
+            }}
+          >
+            CREATE
+          </button>
+        </div>
+        {file && (
+          <div
+            style={{
+              fontSize: "1.9vh",
+              marginTop: "-2vh",
+              marginBottom: "2vh",
+            }}
+          >
+            &nbsp;{file.name}
+          </div>
+        )}
 
         <div className="output">
           {error && <div className="error">{error}</div>}
-          {file && <div>{file.name}</div>}
+
           {file && post === true && (
             <ProgressBar
               file={file}

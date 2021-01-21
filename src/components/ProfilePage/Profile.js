@@ -1,14 +1,19 @@
 import React, { useState } from "react";
-
+import { useLocation } from "react-router-dom";
 import UploadForm from "./UploadForm";
 import Posts from "./Posts";
-import Modal from "./Modal";
-import "../../styles/index.css";
 
 function Profile() {
+  const location = useLocation();
+  const [selectedImg, setSelectedImg] = useState(null);
+
   return (
     <div className="App">
-      <UploadForm />
+      {location.type && location.type === "friends" ? (
+        console.log("")
+      ) : (
+        <UploadForm />
+      )}
       <Posts setSelectedImg={setSelectedImg} />
     </div>
   );

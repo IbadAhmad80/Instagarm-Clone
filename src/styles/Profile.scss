@@ -1,6 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap");
+@import "./config";
+:root {
+  --primary: #af083a;
+  --secondary: #fbf7f7;
+  --error: #ff4a4a;
+}
+
+/* base styles & title */
+body {
+  font-family: "Noto Serif";
+  color: black;
+  background-color: var(--secondary);
+}
+.App {
+  max-width: 960px;
+}
+
+/* upload form styles */
+.upload-form {
+  border: 1px soild balck;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 1vh 1vw;
+  margin: 1vh 15vw 4vh 7vw;
+  .create-post {
+    color: var(--primary);
+    font-weight: bolder;
+    font-family: $secondary-font;
+    letter-spacing: 0.01cm;
+  }
+  form {
+    label input {
+      height: 0;
+      top: 0;
+      width: 0;
+      opacity: 0;
+    }
+    label {
+      display: block;
+      line-height: 50px;
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 24px;
+      transition: 0.5s;
+    }
+    label:hover {
+      color: black;
+      cursor: pointer;
+    }
+    .caption {
+      outline: none;
+      height: 6.5vh;
+      color: gray;
+      width: 44vw;
+      padding: 1vh 1vw;
+      border: 1px solid gray;
+    }
+    button {
+      background-color: var(--primary);
+      padding: 0vw 1vw;
+      margin: 6px;
+      color: white;
+      transition: 0.8s;
+      border: none;
+      font-family: $secondary-font;
+      outline: none;
+      &:hover {
+        background-color: black;
+        cursor: pointer;
+      }
+    }
+    .output {
+      height: 10px;
+      font-size: 0.8rem;
+    }
+    .error {
+      color: var(--error);
+    }
+  }
+}
+
+/* progress bar styles */
+.progress-bar {
+  height: 3px;
+  background: maroon;
+  margin-top: 5px 4vw 0vh 4vw;
+}
+
+/* image grid styles */
+.img-grid {
+  display: flex;
+  flex-direction: column;
+  max-width: 40vw;
+  .img-wrap {
+    // border: 1px solid gray;
+    width: 48vw;
+    margin-bottom: 5vh;
+    background-color: white;
+    margin-left: 7vw;
+  }
+  .img-wrap img {
+    width: 48vw;
+    height: 50vh;
+    padding: 0px 0vw 1vh 0vw;
+  }
+}
 .image-caption {
   font-size: 1.6vw;
   color: black;
+  font-family: $secondary-font;
 }
 .likes {
   color: black;
@@ -10,6 +119,19 @@
   padding: 0.5vh 0vw;
   color: black;
 }
+.comment-button {
+  border: none;
+  outline: none;
+  padding: 0.4vh 1vw;
+  font-size: 2vh;
+  font-family: $secondary-font;
+  color: white;
+  background-color: var(--primary);
+}
 .comment-input {
+  margin-top: 3vh;
   margin-bottom: 4vh;
+  border: none;
+  outline: none;
+  color: gray;
 }

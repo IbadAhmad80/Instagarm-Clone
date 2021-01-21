@@ -7,6 +7,7 @@ const useStorage = (file, caption) => {
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
   const email = useSelector((state) => state.email);
+  const userName = useSelector((state) => state.displayName);
 
   useEffect(() => {
     // references
@@ -33,6 +34,8 @@ const useStorage = (file, caption) => {
           userEmail: email,
           commentMakers: [],
           comments: [],
+          userName: userName,
+          likers: [],
         });
         setUrl(url);
       }
