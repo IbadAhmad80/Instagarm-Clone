@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap");
 @import "./config";
+@import "./accountPage.scss";
+
+.instagarm-heading {
+  @extend h5;
+  margin-top: 0vh;
+}
 :root {
   --primary: #af083a;
   --secondary: #fbf7f7;
@@ -127,6 +133,21 @@ body {
   font-family: $secondary-font;
   color: white;
   background-color: var(--primary);
+}
+.signout-button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  outline: none;
+  font-family: $secondary-font;
+  text-transform: capitalize;
+  color: white;
+  transition: 0.7s;
+  &:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+  }
 }
 .comment-input {
   margin-top: 3vh;

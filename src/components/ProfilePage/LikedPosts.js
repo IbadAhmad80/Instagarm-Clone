@@ -4,7 +4,7 @@ import Profile from "./Profile";
 import "../../styles/Profile.scss";
 import { useSelector } from "react-redux";
 
-function ProfileApp() {
+function LikedPosts() {
   const displayName = useSelector((state) => state.displayName);
   return (
     <div>
@@ -15,4 +15,4 @@ function ProfileApp() {
   );
 }
 
-export default ProfileApp;
+export default LikedPosts;

@@ -9,7 +9,8 @@ function Profile() {
 
   return (
     <div className="App">
-      {location.type && location.type === "friends" ? (
+      {location.type &&
+      (location.type === "friends" || location.type === "liked") ? (
         console.log("")
       ) : (
         <UploadForm />

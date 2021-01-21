@@ -8,6 +8,7 @@ import { signOut } from "../redux/actions";
 import { useDispatch } from "react-redux";
 import { logIn } from "../redux/actions";
 import { FaLocationArrow } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
 export default function UserProfile() {
   const dispatch = useDispatch();
@@ -66,21 +67,22 @@ export default function UserProfile() {
     <div
       style={{
         display: "flex",
-        justifyContent: "space-between",
+        // justifyContent: "space-between",
         margin: "0 2vw 0 2vw",
       }}
     >
-      <h5
+      <h6
+        className="instagarm-heading"
         onClick={(e) => {
           e.preventDefault();
           history.push({
             pathname: "./profile",
           });
         }}
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "pointer", flex: ".2", justifySelf: "start" }}
       >
         Instagram
-      </h5>
+      </h6>
       {/* <h2>{email && email}</h2>
       <h2>{displayName && displayName}</h2> */}
       {/* <h2>
@@ -92,35 +94,56 @@ export default function UserProfile() {
           "Loading"
         )}
       </h2> */}
-      <h2
-        onClick={(e) => {
-          e.preventDefault();
-          history.push({
-            pathname: "./friendsFeed",
-            type: "friends",
-          });
-        }}
-        style={{ cursor: "pointer" }}
-      >
-        <FaLocationArrow />
-      </h2>
-
       <div
         style={{
-          margin: "3.5vh 0vw 9.5vh 0vw ",
-          padding: (photoURL || photoLiterals) && "0.4vw 0.6vw",
-          border: (photoURL || photoLiterals) && "1px solid gray",
-          backgroundColor: (photoURL || photoLiterals) && "beige",
-          cursor: (photoURL || photoLiterals) && "pointer",
-        }}
-        onClick={(e) => {
-          e.preventDefault();
-          auth.signOut();
-          history.push("./");
-          dispatch(signOut());
+          flex: "1",
+          justifyContent: "flex-end",
+          display: "flex",
+          // justifyContent: "space-around",
+          paddingRight: "2vw",
         }}
       >
-        {(photoURL || photoLiterals) && "Sign out"}
+        <h2
+          onClick={(e) => {
+            e.preventDefault();
+            history.push({
+              pathname: "./friendsFeed",
+              type: "friends",
+            });
+          }}
+          style={{ cursor: "pointer", paddingRight: "2vw" }}
+        >
+          <FaLocationArrow />
+        </h2>
+        <h2
+          onClick={(e) => {
+            e.preventDefault();
+            history.push({
+              pathname: "./likedPosts",
+              type: "liked",
+            });
+          }}
+          style={{ cursor: "pointer", paddingRight: "2vw" }}
+        >
+          <FaHeart />
+        </h2>
+
+        <div
+          className="signout-button"
+          style={{
+            margin: "2vh 0vw 7vh 0vw ",
+            padding: (photoURL || photoLiterals) && "0.4vw 0.6vw",
+            border: (photoURL || photoLiterals) && "1px solid gray",
+          }}
+          onClick={(e) => {
+            e.preventDefault();
+            auth.signOut();
+            history.push("./");
+            dispatch(signOut());
+          }}
+        >
+          {(photoURL || photoLiterals) && "Sign out"}
+        </div>
       </div>
     </div>
   ) : (

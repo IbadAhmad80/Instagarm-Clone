@@ -5,6 +5,7 @@ import ProfileApp from "../src/components/ProfilePage/App";
 import { Route, Switch } from "react-router-dom";
 import ResetPassword from "./components/AccountPages/ResetPassword";
 import FriendsFeed from "./components/ProfilePage/FriendsFeed";
+import LikedPosts from "./components/ProfilePage/LikedPosts";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/profile" component={ProfileApp} />
         <Route path="/resetPassword" component={ResetPassword} />
         <Route path="/friendsFeed" component={FriendsFeed} />
+        <Route path="/likedPosts" component={LikedPosts} />
       </Switch>
     </div>
   );
