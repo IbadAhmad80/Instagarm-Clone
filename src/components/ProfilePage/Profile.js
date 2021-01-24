@@ -17,12 +17,7 @@ function Profile() {
       {!location.type && email ? <FollowersFeed /> : console.log("")}
       <div style={{ display: "flex" }}>
         <div style={{ flex: "1" }}>
-          {location.type &&
-          (location.type === "friends" || location.type === "liked") ? (
-            console.log("")
-          ) : (
-            <UploadForm />
-          )}
+          {email && !location.type ? <UploadForm /> : console.log("")}
           <Posts setSelectedImg={setSelectedImg} />
         </div>
         <div
