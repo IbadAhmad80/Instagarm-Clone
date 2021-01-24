@@ -47,54 +47,58 @@ export default function FollowerRecommendations() {
   };
 
   return (
-    <div
-      style={{
-        margin: "16vh 5vw 0vh 4vw",
-        width: "32vw",
-        paddingTop: "0",
-      }}
-    >
-      {docs
-        ? docs.map((doc, index) => {
-            return doc.email !== email ? (
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <span>
-                  {doc.photoURL ? (
-                    <div style={{ display: "flex", marginBottom: "1vh" }}>
-                      <img style={imageStyle_1} src={doc.photoURL} />
-                      <div
-                        style={{ margin: "35px 0px 0px 0px" }}
-                        className="follower-list-name"
-                      >
-                        &nbsp;&nbsp; {doc.displayName.split(" ")[0]}
-                      </div>
-                    </div>
-                  ) : (
-                    <div style={{ display: "flex", marginBottom: "1vh" }}>
-                      <div style={imageStyle_1}>{doc.photoLiterals}</div>
-                      <div
-                        style={{ margin: "35px 0px 0px 0px" }}
-                        className="follower-list-name"
-                      >
-                        &nbsp;&nbsp;{doc.displayName.split(" ")[0]}
-                      </div>
-                    </div>
-                  )}
-                </span>
-                <span
-                  className="following-status"
-                  style={{
-                    marginTop: "5.5vh",
-                    cursor: "pointer",
-                  }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleFollower(index, doc.id);
-                  }}
+    <div style={{ margin: "0vh 5vw 0vh 4vw" }}>
+      <div className="suggestion-heading">Suggestion for You</div>
+      <div
+        style={{
+          width: "32vw",
+          paddingTop: "0",
+        }}
+      >
+        {followers.fol.length > 0 && docs
+          ? docs.map((doc, index) => {
+              return doc.email !== email &&
+                followerStatus[index] !== "Following" ? (
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  {followerStatus[index]}
-                </span>
-                {/* <span>
+                  <span>
+                    {doc.photoURL ? (
+                      <div style={{ display: "flex", marginBottom: "1vh" }}>
+                        <img style={imageStyle_1} src={doc.photoURL} />
+                        <div
+                          style={{ margin: "35px 0px 0px 0px" }}
+                          className="follower-list-name"
+                        >
+                          &nbsp;&nbsp; {doc.displayName.split(" ")[0]}
+                        </div>
+                      </div>
+                    ) : (
+                      <div style={{ display: "flex", marginBottom: "1vh" }}>
+                        <div style={imageStyle_1}>{doc.photoLiterals}</div>
+                        <div
+                          style={{ margin: "35px 0px 0px 0px" }}
+                          className="follower-list-name"
+                        >
+                          &nbsp;&nbsp;{doc.displayName.split(" ")[0]}
+                        </div>
+                      </div>
+                    )}
+                  </span>
+                  <span
+                    className="following-status"
+                    style={{
+                      marginTop: "5.5vh",
+                      cursor: "pointer",
+                    }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleFollower(index, doc.id);
+                    }}
+                  >
+                    {followerStatus[index]}
+                  </span>
+                  {/* <span>
                   {
                     (followerStatus[index] = "Following" ? (
                       <TiTick />
@@ -103,12 +107,13 @@ export default function FollowerRecommendations() {
                     ))
                   }
                 </span> */}
-              </div>
-            ) : (
-              console.log("current user skipped")
-            );
-          })
-        : console.log("users are", docs)}
+                </div>
+              ) : (
+                console.log("current user skipped")
+              );
+            })
+          : console.log("users are", docs)}
+      </div>
     </div>
   );
 }

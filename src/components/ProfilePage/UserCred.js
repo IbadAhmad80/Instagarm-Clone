@@ -7,8 +7,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import { signOut } from "../redux/actions";
 import { useDispatch } from "react-redux";
 import { logIn } from "../redux/actions";
-import { FaLocationArrow } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
+import { FaLocationArrow, FaHeart, FaHome } from "react-icons/fa";
 
 export default function UserProfile() {
   const dispatch = useDispatch();
@@ -109,6 +108,12 @@ export default function UserProfile() {
         }}
       >
         <h2
+          style={{ cursor: "pointer", paddingRight: "2.6vw" }}
+          onClick={() => history.push("./profile")}
+        >
+          <FaHome />
+        </h2>
+        <h2
           onClick={(e) => {
             e.preventDefault();
             history.push({
@@ -116,7 +121,7 @@ export default function UserProfile() {
               type: "friends",
             });
           }}
-          style={{ cursor: "pointer", paddingRight: "2vw" }}
+          style={{ cursor: "pointer", paddingRight: "2.6vw" }}
         >
           <FaLocationArrow />
         </h2>
@@ -128,10 +133,11 @@ export default function UserProfile() {
               type: "liked",
             });
           }}
-          style={{ cursor: "pointer", paddingRight: "2vw" }}
+          style={{ cursor: "pointer", paddingRight: "2.6vw" }}
         >
           <FaHeart />
         </h2>
+
         <div style={{ display: "flex" }}>
           <h2 className="user-name">
             {displayName && getUpperCaseUserName(displayName)} / &nbsp;

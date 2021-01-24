@@ -114,14 +114,23 @@ body {
   font-family: $secondary-font;
   font-size: 2vh;
 }
+.suggestion-heading {
+  text-align: center;
+  font-size: 1.7vw;
+  color: var(--primary);
+  font-family: $secondary-font;
+  margin-bottom: 2vh;
+}
 
 .following-status {
   font-family: $secondary-font;
-  font-size: 2vh;
+  font-size: 1.6vh;
+  font-weight: medium;
   padding: 1vh 1vw;
   background-color: blue;
   color: white;
   border-radius: 30px;
+  text-transform: uppercase;
 }
 .image-caption {
   font-size: 1.6vw;
