@@ -16,6 +16,12 @@ export default function UserProfile() {
   const history = useHistory();
   useSignInWithGoogle(auth, googleAuth, location.method);
   useGenerateUserDocument(location.user, location.method);
+
+  const getUpperCaseUserName = (name) => {
+    let userName = name.split(" ")[0].charAt(0).toUpperCase();
+    return userName + name.split(" ")[0].slice(1);
+  };
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -59,9 +65,9 @@ export default function UserProfile() {
     margin: "20px 4px",
   };
 
-  // const displayName = useSelector((state) => state.displayName);
+  const displayName = useSelector((state) => state.account.displayName);
   const photoURL = useSelector((state) => state.account.photoURL);
-  // const email = useSelector((state) => state.email);
+
   const photoLiterals = useSelector((state) => state.account.photoLiterals);
   return true ? (
     <div
@@ -83,15 +89,14 @@ export default function UserProfile() {
       >
         Instagram
       </h6>
-      {/* <h2>{email && email}</h2>
-      <h2>{displayName && displayName}</h2> */}
+
       {/* <h2>
         {(photoURL || photoLiterals) && photoURL !== null ? (
           <img src={photoURL} alt="cant find display img" style={imageStyle} />
         ) : (photoURL || photoLiterals) && photoURL === null ? (
           <div style={imageStyle}>{photoLiterals}</div>
         ) : (
-          "Loading"
+          console.log("Loading")
         )}
       </h2> */}
       <div
@@ -127,22 +132,26 @@ export default function UserProfile() {
         >
           <FaHeart />
         </h2>
-
-        <div
-          className="signout-button"
-          style={{
-            margin: "2vh 0vw 7vh 0vw ",
-            padding: (photoURL || photoLiterals) && "0.4vw 0.6vw",
-            border: (photoURL || photoLiterals) && "1px solid gray",
-          }}
-          onClick={(e) => {
-            e.preventDefault();
-            auth.signOut();
-            history.push("./");
-            dispatch(signOut());
-          }}
-        >
-          {(photoURL || photoLiterals) && "Sign out"}
+        <div style={{ display: "flex" }}>
+          <h2 className="user-name">
+            {displayName && getUpperCaseUserName(displayName)} / &nbsp;
+          </h2>
+          <div
+            className="signout-button"
+            style={{
+              margin: "2.9vh 0vw 7vh 0vw ",
+              padding: (photoURL || photoLiterals) && "0.2vw 0.4vw",
+              border: (photoURL || photoLiterals) && "1px solid gray",
+            }}
+            onClick={(e) => {
+              e.preventDefault();
+              auth.signOut();
+              history.push("./");
+              dispatch(signOut());
+            }}
+          >
+            {(photoURL || photoLiterals) && "Sign out"}
+          </div>
         </div>
       </div>
     </div>

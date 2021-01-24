@@ -84,9 +84,8 @@ export default function FollowerRecommendations() {
                 <span
                   className="following-status"
                   style={{
-                    paddingTop: "5.5vh",
+                    marginTop: "5.5vh",
                     cursor: "pointer",
-                    color: "blue",
                   }}
                   onClick={(e) => {
                     e.preventDefault();
