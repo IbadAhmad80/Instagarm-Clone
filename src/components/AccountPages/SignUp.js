@@ -115,7 +115,7 @@ export default function SignUp() {
               });
             }}
           >
-            Login in with Goggle
+            Login in with Google
           </h6>
         </div>
       </form>

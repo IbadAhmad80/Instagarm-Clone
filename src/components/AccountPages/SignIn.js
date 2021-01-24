@@ -104,7 +104,7 @@ export default function SignIn() {
                     });
                   }}
                 >
-                  Login in with Goggle
+                  Login in with Google
                 </h6>
               </div>
               <button

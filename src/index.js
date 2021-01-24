@@ -4,11 +4,11 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import accountReducer from "../src/components/redux/reducers";
+import { rootReducer } from "../src/components/redux/rootReducer";
 
 // redux store
 const store = createStore(
-  accountReducer,
+  rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

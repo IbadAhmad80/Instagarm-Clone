@@ -1,48 +1,48 @@
 import React, { useState } from "react";
-import { firestore, imageStyle } from "../../FirebaseConfig";
+import { firestore } from "../../FirebaseConfig";
 import firebase from "firebase/app";
 import { useAllUsers, useFollowers } from "../../customHooks/useFollowers";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { imageStyle_1 } from "../../FirebaseConfig";
+import { followerList } from "../redux/actions";
+// import { TiTick } from "react-icons/ti";
 
 export default function FollowerRecommendations() {
-  let status = [];
+  const dispatch = useDispatch();
   const { docs } = useAllUsers("users");
-  const email = useSelector((state) => state.email);
+  const email = useSelector((state) => state.account.email);
   const { followers } = useFollowers(docs);
   const [followerStatus, setFollowerStatus] = useState([]);
-  const setFollower = (email, index) => {
-    // if (followers.fol[index].includes(email)){
-    //   return
-    // }
-  };
+
   React.useEffect(() => {
-    console.log("followers in useEffect", followers);
-    followers && followers.length > 0
-      ? followers.map((follower, index) => {
-          if (!follower.includes(email)) {
-            console.log("in follow index", index);
-            status[index] = "Follow";
-          } else {
-            console.log("in follower index", index);
-            status[index] = "Following";
-          }
-        })
-      : console.log("did not recieved data yet", followers);
-    console.log("status is ", status);
-    setFollowerStatus(status);
+    let status = [];
+    let emails = [];
+    if (email) {
+      followers.fol && followers.fol.length > 0
+        ? followers.fol.map((follower, index) => {
+            if (!follower.includes(email)) {
+              status[index] = "Follow";
+            } else {
+              status[index] = "Following";
+              emails.push(docs[index].email);
+            }
+          })
+        : console.log("did not recieved data yet", followers);
+      setFollowerStatus(status);
+    }
+    dispatch(followerList(emails));
   }, [followers]);
 
   const handleFollower = async (index, id) => {
     console.log(index, id);
-    if (status[index] === "Follow") {
-      console.log("a gya ha");
+    if (followerStatus[index] === "Follow") {
       const docRef = firestore.collection("users").doc(id);
       await docRef.update({
         followers: firebase.firestore.FieldValue.arrayUnion(email),
       });
-      status[index] = "Following";
-      setFollowerStatus(status);
+      let statuses = followerStatus;
+      statuses[index] = "Following";
+      setFollowerStatus(statuses);
     }
   };
 
@@ -56,7 +56,7 @@ export default function FollowerRecommendations() {
     >
       {docs
         ? docs.map((doc, index) => {
-            return (
+            return doc.email !== email ? (
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <span>
                   {doc.photoURL ? (
@@ -95,7 +95,18 @@ export default function FollowerRecommendations() {
                 >
                   {followerStatus[index]}
                 </span>
+                {/* <span>
+                  {
+                    (followerStatus[index] = "Following" ? (
+                      <TiTick />
+                    ) : (
+                      console.log("")
+                    ))
+                  }
+                </span> */}
               </div>
+            ) : (
+              console.log("current user skipped")
             );
           })
         : console.log("users are", docs)}

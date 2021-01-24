@@ -6,8 +6,8 @@ const useStorage = (file, caption) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
-  const email = useSelector((state) => state.email);
-  const userName = useSelector((state) => state.displayName);
+  const email = useSelector((state) => state.account.email);
+  const userName = useSelector((state) => state.account.displayName);
 
   useEffect(() => {
     // references

@@ -34,7 +34,6 @@ export const useSignInWithGoogle = (auth, googleAuth, method) => {
                   displayName: user.displayName,
                   photoLiterals: null,
                   photoURL: user.photoURL,
-                  followers: [],
                 });
 
                 userCheck = true;
@@ -48,6 +47,7 @@ export const useSignInWithGoogle = (auth, googleAuth, method) => {
                 email,
                 photoLiterals: null,
                 photoURL: photoURL,
+                followers: [],
               });
             }
           });

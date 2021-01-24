@@ -4,6 +4,7 @@ import react from "react";
 export const useFollowers = (docs) => {
   const [followers, setFollowers] = react.useState({ fol: [] });
   let follower = [];
+
   react.useEffect(() => {
     docs.map((doc) => {
       doc &&
@@ -17,7 +18,7 @@ export const useFollowers = (docs) => {
                 follower.push(document.data().followers);
               }
             });
-            setFollowers(follower);
+            setFollowers({ fol: follower });
           });
     });
   }, [docs]);

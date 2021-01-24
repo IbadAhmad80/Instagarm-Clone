@@ -5,7 +5,9 @@ const state = {
   photoLiterals: "",
 };
 
-const accountReducer = (reducer_state = state, action) => {
+const followers = [];
+
+export const accountReducer = (reducer_state = state, action) => {
   switch (action.type) {
     case "SIGNIN":
       reducer_state.displayName = action.payload.displayName;
@@ -21,4 +23,12 @@ const accountReducer = (reducer_state = state, action) => {
   }
 };
 
-export default accountReducer;
+export const followerReducer = (reducer_state = followers, action) => {
+  switch (action.type) {
+    case "FOLLOWERLIST":
+      reducer_state = action.payload.followerList;
+      return reducer_state;
+    default:
+      return reducer_state;
+  }
+};

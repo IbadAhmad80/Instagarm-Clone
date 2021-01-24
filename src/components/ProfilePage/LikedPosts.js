@@ -5,7 +5,7 @@ import "../../styles/Profile.scss";
 import { useSelector } from "react-redux";
 
 function LikedPosts() {
-  const displayName = useSelector((state) => state.displayName);
+  const displayName = useSelector((state) => state.account.displayName);
   return (
     <div>
       <UserProfile />

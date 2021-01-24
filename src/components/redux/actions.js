@@ -15,3 +15,12 @@ export const signOut = () => {
     type: "SIGNOUT",
   };
 };
+
+export const followerList = (followerList) => {
+  return {
+    type: "FOLLOWERLIST",
+    payload: {
+      followerList: followerList,
+    },
+  };
+};

@@ -60,9 +60,9 @@ export default function UserProfile() {
   };
 
   // const displayName = useSelector((state) => state.displayName);
-  const photoURL = useSelector((state) => state.photoURL);
+  const photoURL = useSelector((state) => state.account.photoURL);
   // const email = useSelector((state) => state.email);
-  const photoLiterals = useSelector((state) => state.photoLiterals);
+  const photoLiterals = useSelector((state) => state.account.photoLiterals);
   return true ? (
     <div
       style={{
