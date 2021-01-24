@@ -36,7 +36,7 @@ export const imageStyle_1 = {
   width: "40px",
   height: "42px",
   borderRadius: "50%",
-  backgroundColor: "rgb(102, 102, 102)",
+  backgroundColor: "purple",
   fontSize: "14px",
   color: "white",
   textAlign: "center",

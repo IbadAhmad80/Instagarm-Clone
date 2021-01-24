@@ -69,6 +69,16 @@ const Posts = () => {
 
   return (
     <div className="img-grid">
+      <div className="friends-feed-heading">
+        {location.type &&
+        location.type === "friends" &&
+        followers[0] === "specific_user"
+          ? `Posts from ${getUpperCaseUserName(followers[2])}`
+          : location.type && location.type === "friends"
+          ? `Posts from Closed Ones`
+          : console.log("")}
+      </div>
+
       {docs &&
         docs.map((doc, index) =>
           location.type && location.type === "friends" ? (

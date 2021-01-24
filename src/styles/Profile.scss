@@ -115,18 +115,30 @@ body {
   font-size: 2vh;
 }
 .suggestion-heading {
-  text-align: center;
-  font-size: 1.7vw;
-  color: var(--primary);
+  // text-align: center;
+  font-size: 1.4vw;
+  color: rgb(102, 102, 102);
   font-family: $secondary-font;
   margin-bottom: 2vh;
+}
+.followed-heading {
+  font-size: 1.4vw;
+  color: rgb(23, 51, 95);
+  font-family: $secondary-font;
+  margin-bottom: 2vh;
+}
+.friends-feed-heading {
+  font-size: 1.7vw;
+  color: rgb(102, 102, 102);
+  font-family: $secondary-font;
+  margin: 0vh 0vw 4vh 7vw;
 }
 
 .following-status {
   font-family: $secondary-font;
   font-size: 1.6vh;
   font-weight: medium;
-  padding: 1vh 1vw;
+  padding: 1.2vh 0.9vw 0.9vh 0.9vw;
   background-color: blue;
   color: white;
   border-radius: 30px;

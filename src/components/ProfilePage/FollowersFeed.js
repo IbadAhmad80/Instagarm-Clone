@@ -28,8 +28,9 @@ export default function FollowersFeed() {
     setFollowerStatus(status);
   }, [followers]);
 
-  const showFeed = (email) => {
-    dispatch(followerList(email));
+  const showFeed = (email, name) => {
+    const emails = ["specific_user", email, name];
+    dispatch(followerList(emails));
     history.push({
       pathname: "./friendsFeed",
       type: "friends",
@@ -37,33 +38,36 @@ export default function FollowersFeed() {
   };
 
   return (
-    <div
-      style={{
-        margin: "0vh 7vw 4vh 7vw",
-        display: "flex",
-      }}
-    >
-      {docs
-        ? docs.map((doc, index) => {
-            return doc.email !== email && followerStatus[index] === true ? (
-              <div style={{ paddingRight: "1vw" }}>
-                <span>
-                  {doc.photoURL ? (
-                    <div onClick={() => showFeed(doc.email)}>
-                      <img className="feed-photo" src={doc.photoURL} />
-                    </div>
-                  ) : (
-                    <div onClick={() => showFeed(doc.email)}>
-                      <div className="feed-photo">{doc.photoLiterals}</div>
-                    </div>
-                  )}
-                </span>
-              </div>
-            ) : (
-              console.log("current user skipped")
-            );
-          })
-        : console.log("users are", docs)}
+    <div style={{ margin: "0vh 7vw 4vh 7vw" }}>
+      {" "}
+      {/* <div className="followed-heading">Persons You follow</div> */}
+      <div
+        style={{
+          display: "flex",
+        }}
+      >
+        {docs
+          ? docs.map((doc, index) => {
+              return doc.email !== email && followerStatus[index] === true ? (
+                <div style={{ paddingRight: "1vw" }}>
+                  <span>
+                    {doc.photoURL ? (
+                      <div onClick={() => showFeed(doc.email, doc.displayName)}>
+                        <img className="feed-photo" src={doc.photoURL} />
+                      </div>
+                    ) : (
+                      <div onClick={() => showFeed(doc.email, doc.displayName)}>
+                        <div className="feed-photo">{doc.photoLiterals}</div>
+                      </div>
+                    )}
+                  </span>
+                </div>
+              ) : (
+                console.log("current user skipped")
+              );
+            })
+          : console.log("users are", docs)}
+      </div>
     </div>
   );
 }

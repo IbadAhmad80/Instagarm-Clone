@@ -47,7 +47,7 @@ export default function FollowerRecommendations() {
   };
 
   return (
-    <div style={{ margin: "0vh 5vw 0vh 4vw" }}>
+    <div style={{ margin: "6vh 5vw 0vh 4vw" }}>
       <div className="suggestion-heading">Suggestion for You</div>
       <div
         style={{
