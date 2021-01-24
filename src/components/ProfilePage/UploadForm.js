@@ -48,6 +48,7 @@ const UploadForm = () => {
           </label>
 
           <button
+            style={{ marginBottom: "2.5vh" }}
             onClick={(e) => {
               e.preventDefault();
               setPost(true);

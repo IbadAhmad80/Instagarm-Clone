@@ -18,3 +18,29 @@ export const storage = firebase.storage();
 export const firestore = firebase.firestore();
 export const googleAuth = new firebase.auth.GoogleAuthProvider();
 export const timestamp = firebase.firestore.FieldValue.serverTimestamp;
+
+export const imageStyle = {
+  width: "48px",
+  height: "50px",
+  borderRadius: "50%",
+  backgroundColor: "rgb(102, 102, 102)",
+  fontSize: "18px",
+  color: "white",
+  textAlign: "center",
+  lineHeight: "50px",
+  padding: "0px 0px 0px 2px",
+  margin: "20px 4px 0px 4px",
+};
+
+export const imageStyle_1 = {
+  width: "40px",
+  height: "42px",
+  borderRadius: "50%",
+  backgroundColor: "rgb(102, 102, 102)",
+  fontSize: "14px",
+  color: "white",
+  textAlign: "center",
+  lineHeight: "44px",
+  padding: "0px 0px 0px 2px",
+  margin: "20px 4px 0px 4px",
+};

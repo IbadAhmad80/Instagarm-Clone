@@ -1,32 +1,20 @@
 import React, { useState } from "react";
 import useFirestore from "../../customHooks/useFirestore";
-import { firestore } from "../../FirebaseConfig";
+import { firestore, imageStyle } from "../../FirebaseConfig";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import firebase from "firebase/app";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
+import { usePhotoFinder } from "../../customHooks/usePhotoFinder";
 
 const Posts = () => {
   const location = useLocation();
   const [comment, setComment] = useState("");
   const { docs } = useFirestore("posts");
-  const [liked, setLiked] = useState(false);
+  const { photos } = usePhotoFinder(docs);
+  const [_, setLiked] = useState(false);
   const displayName = useSelector((state) => state.displayName);
-  const photoURL = useSelector((state) => state.photoURL);
-
-  const imageStyle = {
-    width: "48px",
-    height: "50px",
-    borderRadius: "50%",
-    backgroundColor: "rgb(102, 102, 102)",
-    fontSize: "18px",
-    color: "white",
-    textAlign: "center",
-    lineHeight: "50px",
-    padding: "0px 0px 0px 2px",
-    margin: "20px 4px 0px 4px",
-  };
 
   const getUpperCaseUserName = (name) => {
     let userName = name.split(" ")[0].charAt(0).toUpperCase();
@@ -67,7 +55,7 @@ const Posts = () => {
   return (
     <div className="img-grid">
       {docs &&
-        docs.map((doc) =>
+        docs.map((doc, index) =>
           location.type && location.type === "friends" ? (
             <motion.div
               className="img-wrap"
@@ -85,12 +73,19 @@ const Posts = () => {
                   height: "13.6vh",
                 }}
               >
-                {photoURL === null ? (
+                {photos.images[index] === null ? (
                   <h6 style={imageStyle}>
                     {doc.userName.split(" ")[0].toUpperCase().charAt(0)}
                   </h6>
                 ) : (
-                  <img style={imageStyle} src={photoURL} alt="user img" />
+                  <img
+                    style={imageStyle}
+                    src={photos.images[index]}
+                    alt="user img"
+                  />
+                  // <h6 style={imageStyle}>
+                  //   {doc.userName.split(" ")[0].toUpperCase().charAt(0)}
+                  // </h6>
                 )}
 
                 <h6
@@ -193,12 +188,19 @@ const Posts = () => {
                     height: "13.6vh",
                   }}
                 >
-                  {photoURL === null ? (
+                  {photos.images[index] === null ? (
                     <h6 style={imageStyle}>
                       {doc.userName.split(" ")[0].toUpperCase().charAt(0)}
                     </h6>
                   ) : (
-                    <img style={imageStyle} src={photoURL} alt="user img" />
+                    <img
+                      style={imageStyle}
+                      src={photos.images[index]}
+                      alt="user img"
+                    />
+                    // <h6 style={imageStyle}>
+                    //   {doc.userName.split(" ")[0].toUpperCase().charAt(0)}
+                    // </h6>
                   )}
                   <h6
                     style={{
@@ -302,12 +304,19 @@ const Posts = () => {
                   height: "13.6vh",
                 }}
               >
-                {photoURL === null ? (
+                {photos.images[index] === null ? (
                   <h6 style={imageStyle}>
                     {doc.userName.split(" ")[0].toUpperCase().charAt(0)}
                   </h6>
                 ) : (
-                  <img style={imageStyle} src={photoURL} alt="user img" />
+                  <img
+                    style={imageStyle}
+                    src={photos.images[index]}
+                    alt="user img"
+                  />
+                  // <h6 style={imageStyle}>
+                  //   {doc.userName.split(" ")[0].toUpperCase().charAt(0)}
+                  // </h6>
                 )}
                 <h6
                   style={{
@@ -359,12 +368,17 @@ const Posts = () => {
                   doc.comments.map((comment, index) =>
                     index < 2 ? (
                       <motion.div className="comments">
-                        {
-                          doc.commentMakers[
-                            doc.commentMakers.length - index - 1
-                          ].split(" ")[0]
-                        }
-                        : {doc.comments[doc.comments.length - index - 1]}
+                        <span style={{ fontWeight: "bolder" }}>
+                          {
+                            doc.commentMakers[
+                              doc.commentMakers.length - index - 1
+                            ].split(" ")[0]
+                          }
+                        </span>{" "}
+                        <span>
+                          {" "}
+                          : {doc.comments[doc.comments.length - index - 1]}
+                        </span>
                       </motion.div>
                     ) : (
                       console.log("")
@@ -392,7 +406,7 @@ const Posts = () => {
               </div>
             </motion.div>
           ) : (
-            console.log("post with this id is from different user", doc.id)
+            console.log("")
           )
         )}
       <br />

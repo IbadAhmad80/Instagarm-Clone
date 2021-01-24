@@ -29,7 +29,7 @@ body {
   flex-direction: column;
   background-color: white;
   padding: 1vh 1vw;
-  margin: 1vh 15vw 4vh 7vw;
+  margin: 1vh 0vw 4vh 7vw;
   .create-post {
     color: var(--primary);
     font-weight: bolder;
@@ -98,10 +98,7 @@ body {
 .img-grid {
   display: flex;
   flex-direction: column;
-  max-width: 40vw;
   .img-wrap {
-    // border: 1px solid gray;
-    width: 48vw;
     margin-bottom: 5vh;
     background-color: white;
     margin-left: 7vw;
@@ -111,6 +108,16 @@ body {
     height: 50vh;
     padding: 0px 0vw 1vh 0vw;
   }
+}
+
+.follower-list-name {
+  font-family: $secondary-font;
+  font-size: 2vh;
+}
+
+.following-status {
+  font-family: $secondary-font;
+  font-size: 2vh;
 }
 .image-caption {
   font-size: 1.6vw;
