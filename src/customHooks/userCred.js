@@ -8,14 +8,11 @@ export const useFollowers = (email) => {
     .collection("users")
     .where("email", "==", email)
     .get()
-    .then(
-      (snapshot) => {
-        setFollowers({
-          followers: snapshot.docs[0].data().followers.length,
-        });
-      },
-      [email]
-    );
+    .then((snapshot) => {
+      setFollowers({
+        followers: snapshot.docs[0].data().followers.length,
+      });
+    });
   return { followers };
 };
 
@@ -23,15 +20,15 @@ export const usePosts = (email) => {
   const [posts, setPosts] = React.useState({
     posts: 0,
   });
-  React.useEffect(() => {
-    firestore
-      .collection("posts")
-      .where("userEmail", "==", email)
-      .get()
-      .then((snapshot) => {
-        setPosts({ posts: snapshot.docs.length });
-      });
-  }, [email]);
+
+  firestore
+    .collection("posts")
+    .where("userEmail", "==", email)
+    .get()
+    .then((snapshot) => {
+      setPosts({ posts: snapshot.docs.length });
+    });
+
   return { posts };
 };
 
@@ -40,19 +37,17 @@ export const useFollowing = (email) => {
     following: 0,
   });
   let count = 0;
-  React.useEffect(() => {
-    firestore
-      .collection("posts")
-      .get()
-      .then((snapshot) => {
-        snapshot.docs.forEach((doc) => {
-          if (doc.data().followers && doc.data().followers.includes(email)) {
-            count = count + 1;
-            console.log(doc.data());
-          }
-        });
-        setFollowing({ following: count });
+
+  firestore
+    .collection("users")
+    .get()
+    .then((snapshot) => {
+      snapshot.docs.forEach((doc) => {
+        if (doc.data().followers && doc.data().followers.includes(email)) {
+          count = count + 1;
+        }
       });
-  }, [email]);
+      setFollowing({ following: count });
+    });
   return { following };
 };

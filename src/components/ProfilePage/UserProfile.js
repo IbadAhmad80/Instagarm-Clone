@@ -14,7 +14,7 @@ export default function UserProfile() {
   const { followers } = useFollowers(email);
   const { posts } = usePosts(email);
   const { following } = useFollowing(email);
-  console.log(followers, posts, following);
+
   return (
     <div>
       <div className="user-profile">
