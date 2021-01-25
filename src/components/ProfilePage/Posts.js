@@ -89,7 +89,7 @@ const Posts = () => {
         followers[0] === "specific_user"
           ? `Posts from ${getUpperCaseUserName(followers[2])}`
           : location.type && location.type === "friends"
-          ? `Posts from Closed Ones`
+          ? `Posts from Your Followed Ones`
           : console.log("")}
       </div>
 
