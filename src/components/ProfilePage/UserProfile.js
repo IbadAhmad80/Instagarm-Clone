@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import {
   useFollowers,
-  // usePosts,
+  usePosts,
   useFollowing,
 } from "../../customHooks/userCred";
 
@@ -12,9 +12,8 @@ export default function UserProfile() {
   const photoLiterals = useSelector((state) => state.account.photoLiterals);
   const photoURL = useSelector((state) => state.account.photoURL);
   const { followers } = useFollowers(email);
-  // const { posts } = usePosts(email);
+  const { posts } = usePosts(email);
   const { following } = useFollowing(email);
-  console.log("hi");
   return (
     <div>
       <div className="user-profile">
@@ -33,7 +32,7 @@ export default function UserProfile() {
           {followers.followers > 1 ? "followers" : "follower"}
         </div>
         <div className="user-posts">
-          {followers.posts} {followers.posts > 1 ? "posts" : "post"}
+          {posts.posts} {posts.posts > 1 ? "posts" : "post"}
         </div>
         <div className="user-following">{following.following} following</div>
       </div>
