@@ -1,12 +1,12 @@
 import React from "react";
-import UserProfile from "./UserCred";
+import NavBar from "./NavBar";
 import Profile from "./Profile";
 import "../../styles/Profile.scss";
 
 function ProfileApp() {
   return (
     <div>
-      <UserProfile />
+      <NavBar />
       <Profile />
     </div>
   );

@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import UploadForm from "./UploadForm";
 import { useSelector } from "react-redux";
 import FollowersFeed from "./FollowersFeed";
+import UserProfile from "./UserProfile";
 
 import Posts from "./Posts";
 import FollowerRecommendations from "./FollowerRecommendations";
@@ -25,7 +26,8 @@ function Profile() {
             flex: "1",
           }}
         >
-          {!location.type && email ? (
+          {!location.type && email ? <UserProfile /> : console.log("")}
+          {location.type && location.type === "friends" && email ? (
             <FollowerRecommendations />
           ) : (
             console.log("")

@@ -1,5 +1,5 @@
 import React from "react";
-import UserProfile from "./UserCred";
+import NavBar from "./NavBar";
 import Profile from "./Profile";
 import "../../styles/Profile.scss";
 import { useSelector } from "react-redux";
@@ -8,7 +8,7 @@ function ProfileApp() {
   const displayName = useSelector((state) => state.account.displayName);
   return (
     <div>
-      <UserProfile />
+      <NavBar />
 
       {displayName && <Profile />}
     </div>
