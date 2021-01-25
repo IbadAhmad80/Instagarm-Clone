@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import firebase from "firebase/app";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
-import { MdInsertComment } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 import { usePhotoFinder } from "../../customHooks/usePhotoFinder";
+import { BiMessageRounded } from "react-icons/bi";
 import $ from "jquery";
 
 const Posts = () => {
@@ -32,8 +32,8 @@ const Posts = () => {
 
   const handleToggle = (id) => {
     setToggle(true);
-    // alert(id);
-    $(`#${id}`).toggle(300, "linear");
+
+    $(`#${id}`).toggle(500, "swing");
   };
 
   const addComment = async (id) => {
@@ -64,7 +64,21 @@ const Posts = () => {
         likers: firebase.firestore.FieldValue.arrayUnion(displayName),
       });
       setLiked(true);
-    } else setLiked(true);
+    } else if (doc.likers.includes(displayName)) {
+      firestore
+        .collection("posts")
+        .doc(doc.id)
+        .update({
+          likes: firebase.firestore.FieldValue.increment(-1),
+        });
+      doc.likers.splice(doc.likers.indexOf(displayName), 1);
+      const likers = doc.likers;
+      const docRef = firestore.collection("posts").doc(doc.id);
+      await docRef.update({
+        likers: likers,
+      });
+      setLiked(false);
+    }
   };
 
   return (
@@ -139,20 +153,35 @@ const Posts = () => {
                     height: "8vh",
                     margin: "-2vh 0vw 0vh 2vw",
                   }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLike(doc);
-                  }}
                 >
                   {" "}
                   <span
                     onClick={() => handleToggle(doc.id)}
-                    style={{ fontSize: "4vh", padding: "1.7vh 1vw 0vh 0vw" }}
+                    style={{ fontSize: "4vh", padding: "1.7vh .5vw 0vh 0vw" }}
                   >
                     {" "}
-                    <MdInsertComment />
+                    <BiMessageRounded />
                   </span>
-                  <h5 style={{ fontSize: "3.5vh" }}>
+                  <span>
+                    <h6
+                      style={{
+                        paddingRight: "1vw",
+                        fontSize: "2.2vh",
+                        marginTop: "2.1vh",
+                        fontWeight: "lighter",
+                      }}
+                    >
+                      {" "}
+                      {doc.commentMakers.length}&nbsp;comments
+                    </h6>
+                  </span>
+                  <h5
+                    style={{ fontSize: "3.5vh" }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLike(doc);
+                    }}
+                  >
                     {doc.likers.includes(displayName) ? (
                       <FaHeart />
                     ) : (
@@ -160,7 +189,16 @@ const Posts = () => {
                     )}
                   </h5>
                   &nbsp;
-                  <h6> {doc.likes}</h6>
+                  <h6
+                    style={{
+                      padding: "0vh 1vw 0vh .5vw",
+                      fontSize: "2.2vh",
+                      marginTop: "2.1vh",
+                      fontWeight: "lighter",
+                    }}
+                  >
+                    {doc.likes > 1 ? doc.likes + " likes" : doc.likes + " like"}
+                  </h6>
                 </span>
                 <div style={{ margin: "0vh 2vw 0vh 1vw" }}>
                   {" "}
@@ -271,20 +309,35 @@ const Posts = () => {
                     height: "8vh",
                     margin: "-2vh 0vw 0vh 2vw",
                   }}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLike(doc);
-                  }}
                 >
                   {" "}
                   <span
                     onClick={() => handleToggle(doc.id)}
-                    style={{ fontSize: "4vh", padding: "1.7vh 1vw 0vh 0vw" }}
+                    style={{ fontSize: "4vh", padding: "1.7vh .5vw 0vh 0vw" }}
                   >
                     {" "}
-                    <MdInsertComment />
+                    <BiMessageRounded />
                   </span>
-                  <h5 style={{ fontSize: "3.5vh" }}>
+                  <span>
+                    <h6
+                      style={{
+                        paddingRight: "1vw",
+                        fontSize: "2.2vh",
+                        marginTop: "2.1vh",
+                        fontWeight: "lighter",
+                      }}
+                    >
+                      {" "}
+                      {doc.commentMakers.length}&nbsp;comments
+                    </h6>
+                  </span>
+                  <h5
+                    style={{ fontSize: "3.5vh" }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLike(doc);
+                    }}
+                  >
                     {doc.likers.includes(displayName) ? (
                       <FaHeart />
                     ) : (
@@ -292,7 +345,16 @@ const Posts = () => {
                     )}
                   </h5>
                   &nbsp;
-                  <h6> {doc.likes}</h6>
+                  <h6
+                    style={{
+                      padding: "0vh 1vw 0vh .5vw",
+                      fontSize: "2.2vh",
+                      marginTop: "2.1vh",
+                      fontWeight: "lighter",
+                    }}
+                  >
+                    {doc.likes > 1 ? doc.likes + " likes" : doc.likes + " like"}
+                  </h6>
                 </span>
                 <div style={{ margin: "0vh 2vw 0vh 1vw" }}>
                   {" "}
@@ -402,20 +464,35 @@ const Posts = () => {
                   height: "8vh",
                   margin: "-2vh 0vw 0vh 2vw",
                 }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleLike(doc);
-                }}
               >
                 {" "}
                 <span
                   onClick={() => handleToggle(doc.id)}
-                  style={{ fontSize: "4vh", padding: "1.7vh 1vw 0vh 0vw" }}
+                  style={{ fontSize: "4vh", padding: "1.7vh .5vw 0vh 0vw" }}
                 >
                   {" "}
-                  <MdInsertComment />
+                  <BiMessageRounded />
                 </span>
-                <h5 style={{ fontSize: "3.5vh" }}>
+                <span>
+                  <h6
+                    style={{
+                      paddingRight: "1vw",
+                      fontSize: "2.2vh",
+                      marginTop: "2.1vh",
+                      fontWeight: "lighter",
+                    }}
+                  >
+                    {" "}
+                    {doc.commentMakers.length}&nbsp;comments
+                  </h6>
+                </span>
+                <h5
+                  style={{ fontSize: "3.5vh" }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLike(doc);
+                  }}
+                >
                   {doc.likers.includes(displayName) ? (
                     <FaHeart />
                   ) : (
@@ -423,7 +500,16 @@ const Posts = () => {
                   )}
                 </h5>
                 &nbsp;
-                <h6> {doc.likes}</h6>
+                <h6
+                  style={{
+                    padding: "0vh 1vw 0vh .5vw",
+                    fontSize: "2.2vh",
+                    marginTop: "2.1vh",
+                    fontWeight: "lighter",
+                  }}
+                >
+                  {doc.likes > 1 ? doc.likes + " likes" : doc.likes + " like"}
+                </h6>
               </span>
               <div style={{ margin: "0vh 2vw 0vh 1vw" }}>
                 {" "}
