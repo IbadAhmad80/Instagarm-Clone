@@ -13,6 +13,11 @@ export default function NavBar() {
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
+
+  const displayName = useSelector((state) => state.account.displayName);
+  const photoURL = useSelector((state) => state.account.photoURL);
+
+  const photoLiterals = useSelector((state) => state.account.photoLiterals);
   useSignInWithGoogle(auth, googleAuth, location.method);
   useGenerateUserDocument(location.user, location.method);
 
@@ -24,9 +29,27 @@ export default function NavBar() {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        // console.log("user logged in: ", user.displayName, user.email);
         if (user.displayName !== null) {
-          dispatch(logIn(user.email, user.displayName, user.photoURL, null));
+          let photo;
+          if (localStorage.getItem("user") !== null) {
+            photo = localStorage.getItem("user");
+            photo = JSON.parse(photo);
+          }
+          // console.log(
+          //   "user logged in: ",
+          //   user.displayName,
+          //   user.email,
+          //   user.photoURL
+          // );
+
+          dispatch(
+            logIn(
+              user.email,
+              user.displayName,
+              photoURL || photo.photoURL,
+              null
+            )
+          );
         } else {
           let data;
           firestore
@@ -36,9 +59,18 @@ export default function NavBar() {
               snapshot.docs.forEach((doc) => {
                 if (doc.data().email === user.email) data = doc.data();
               });
-              dispatch(
-                logIn(data.email, data.displayName, null, data.photoLiterals)
-              );
+              data.photoURL !== null
+                ? dispatch(
+                    logIn(data.email, data.displayName, data.photoURL, null)
+                  )
+                : dispatch(
+                    logIn(
+                      data.email,
+                      data.displayName,
+                      null,
+                      data.photoLiterals
+                    )
+                  );
             })
             .catch((err) => {
               console.log("Error getting documents", err);
@@ -64,10 +96,6 @@ export default function NavBar() {
     margin: "20px 4px",
   };
 
-  const displayName = useSelector((state) => state.account.displayName);
-  const photoURL = useSelector((state) => state.account.photoURL);
-
-  const photoLiterals = useSelector((state) => state.account.photoLiterals);
   return true ? (
     <div
       style={{

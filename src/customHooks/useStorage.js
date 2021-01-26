@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { storage, firestore, timestamp } from "../FirebaseConfig";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import firebase from "firebase/app";
+import { logIn } from "../components/redux/actions";
 
-const useStorage = (file, caption) => {
+export const useStorage = (file, caption) => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [url, setUrl] = useState(null);
@@ -45,4 +47,41 @@ const useStorage = (file, caption) => {
   return { progress, url, error };
 };
 
-export default useStorage;
+export const useUpdateProfile = (file, email) => {
+  const [error, setError] = useState(null);
+  const [url, setUrl] = useState(null);
+  const displayName = useSelector((state) => state.account.displayName);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // references
+    const storageRef = storage.ref(file.name);
+
+    storageRef.put(file).on(
+      "state_changed",
+      (snap) => {},
+      (err) => {
+        setError(err);
+      },
+      async () => {
+        const url = await storageRef.getDownloadURL();
+        firestore
+          .collection("users")
+          .get()
+          .then((snapshot) => {
+            snapshot.docs.forEach((doc) => {
+              if (doc.data().email === email) {
+                firebase.firestore().collection("users").doc(doc.id).update({
+                  photoLiterals: null,
+                  photoURL: url,
+                });
+              }
+            });
+          });
+        setUrl(url);
+      }
+    );
+  }, [file]);
+  dispatch(logIn(email, displayName, url, null));
+  return { url, error };
+};

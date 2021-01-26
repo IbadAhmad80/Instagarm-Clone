@@ -10,6 +10,7 @@ import FollowerRecommendations from "./FollowerRecommendations";
 
 function Profile() {
   const email = useSelector((state) => state.account.email);
+
   const location = useLocation();
   const [selectedImg, setSelectedImg] = useState(null);
 

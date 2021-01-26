@@ -28,7 +28,7 @@ const UploadForm = () => {
         <input
           className="caption"
           type="text"
-          vlaue={caption}
+          value={caption}
           placeholder="Post Caption .."
           onChange={(e) => setCaption(e.target.value)}
         />

@@ -14,7 +14,9 @@ export const accountReducer = (reducer_state = state, action) => {
       reducer_state.photoURL = action.payload.photoURL;
       reducer_state.email = action.payload.email;
       reducer_state.photoLiterals = action.payload.photoLiterals;
+      localStorage.setItem("user", JSON.stringify(reducer_state));
       return reducer_state;
+
     case "SIGNOUT":
       reducer_state = {};
       return reducer_state;

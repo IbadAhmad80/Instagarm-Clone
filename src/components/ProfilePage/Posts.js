@@ -19,6 +19,7 @@ const Posts = () => {
   const displayName = useSelector((state) => state.account.displayName);
   const followers = useSelector((state) => state.follower);
   const [toggle, setToggle] = useState(false);
+  const mapStateToProps = (state) => ({ photoURL: state.account.photoURL });
   React.useEffect(() => {
     if (toggle === false) {
       $(".comment-form").slideUp(5, "linear");

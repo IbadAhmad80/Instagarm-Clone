@@ -51,7 +51,7 @@ export const useFollowing = (email) => {
         snapshot.docs.forEach((doc) => {
           if (doc.data().followers && doc.data().followers.includes(email)) {
             count = count + 1;
-            console.log(doc.data());
+            // console.log(doc.data());
           }
         });
         setFollowing({ following: count });
