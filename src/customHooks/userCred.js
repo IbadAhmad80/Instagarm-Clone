@@ -26,18 +26,32 @@ export const usePosts = (email) => {
   const [posts, setPosts] = React.useState({
     posts: 0,
   });
+  let post = 0;
   React.useEffect(() => {
-    firestore
-      .collection("posts")
-      .where("userEmail", "==", email)
-      .get()
-      .then((snapshot) => {
-        setPosts({ posts: snapshot.docs.length });
+    const unsub = firestore.collection("posts").onSnapshot((snap) => {
+      snap.forEach((doc) => {
+        doc.data().userEmail === snap.docs[0].data().userEmail
+          ? (post = 0)
+          : (post = post);
+        if (doc.data().userEmail === email) {
+          post = post + 1;
+        }
       });
+
+      setPosts({ posts: post });
+    });
   }, [email]);
   return { posts };
 };
+// console.log(documents);
 
+// firestore
+//   .collection("posts")
+//   .where("userEmail", "==", email)
+//   .get()
+//   .then((snapshot) => {
+//     setPosts({ posts: snapshot.docs.length });
+//   });
 export const useFollowing = (email) => {
   const [following, setFollowing] = React.useState({
     following: 0,

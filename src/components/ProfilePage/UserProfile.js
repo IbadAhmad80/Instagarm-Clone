@@ -7,6 +7,7 @@ import {
   usePosts,
   useFollowing,
 } from "../../customHooks/userCred";
+import { FaCartArrowDown, FaUpload } from "react-icons/fa";
 
 export default function UserProfile() {
   const displayName = useSelector((state) => state.account.displayName);
@@ -42,6 +43,9 @@ export default function UserProfile() {
             ) : (
               <div className="user-display-photo-1">{photoLiterals}</div>
             )}
+            <h2 className="overlay">
+              <FaUpload />
+            </h2>
           </span>
         </label>
 

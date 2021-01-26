@@ -88,7 +88,8 @@ export default function FollowerRecommendations() {
                   <span
                     className="following-status"
                     style={{
-                      marginTop: "5.5vh",
+                      marginTop: "4.8vh",
+                      marginBottom: "1.2vh",
                       cursor: "pointer",
                     }}
                     onClick={(e) => {

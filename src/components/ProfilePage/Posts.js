@@ -19,12 +19,12 @@ const Posts = () => {
   const displayName = useSelector((state) => state.account.displayName);
   const followers = useSelector((state) => state.follower);
   const [toggle, setToggle] = useState(false);
-  const mapStateToProps = (state) => ({ photoURL: state.account.photoURL });
   React.useEffect(() => {
     if (toggle === false) {
       $(".comment-form").slideUp(5, "linear");
     }
   });
+  console.log("changes photos", photos);
 
   const getUpperCaseUserName = (name) => {
     let userName = name.split(" ")[0].charAt(0).toUpperCase();
@@ -86,10 +86,11 @@ const Posts = () => {
     <div className="img-grid">
       <div className="friends-feed-heading">
         {location.type &&
+        followers.length > 0 &&
         location.type === "friends" &&
         followers[0] === "specific_user"
           ? `Posts from ${getUpperCaseUserName(followers[2])}`
-          : location.type && location.type === "friends"
+          : followers.length > 0 && location.type && location.type === "friends"
           ? `Posts from Your Followed Ones`
           : console.log("")}
       </div>
@@ -152,7 +153,7 @@ const Posts = () => {
                     display: "flex",
                     // border: "1px solid gray",
                     height: "8vh",
-                    margin: "-2vh 0vw 0vh 2vw",
+                    margin: "-2vh 0vw 0vh 1vw",
                   }}
                 >
                   {" "}
@@ -308,7 +309,7 @@ const Posts = () => {
                     display: "flex",
                     // border: "1px solid gray",
                     height: "8vh",
-                    margin: "-2vh 0vw 0vh 2vw",
+                    margin: "-2vh 0vw 0vh 1vw",
                   }}
                 >
                   {" "}
@@ -428,14 +429,18 @@ const Posts = () => {
                 }}
               >
                 {photos.images[index] === null ? (
-                  <h6 style={imageStyle}>
+                  <h6
+                    style={imageStyle}
+                    onClick={() => console.log(photos.images[index], index)}
+                  >
                     {doc.userName.split(" ")[0].toUpperCase().charAt(0)}
                   </h6>
                 ) : (
                   <img
                     style={imageStyle}
                     src={photos.images[index]}
-                    alt="user img"
+                    alt="img"
+                    onClick={() => console.log(photos.images[index], index)}
                   />
                   // <h6 style={imageStyle}>
                   //   {doc.userName.split(" ")[0].toUpperCase().charAt(0)}
@@ -463,7 +468,7 @@ const Posts = () => {
                   display: "flex",
                   // border: "1px solid gray",
                   height: "8vh",
-                  margin: "-2vh 0vw 0vh 2vw",
+                  margin: "-2vh 0vw 0vh 1vw",
                 }}
               >
                 {" "}
