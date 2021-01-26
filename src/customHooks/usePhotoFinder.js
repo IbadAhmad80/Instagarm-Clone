@@ -8,8 +8,8 @@ export const usePhotoFinder = (docs) => {
     docs.map((document, index) => {
       const unsub = firestore.collection("users").onSnapshot((snap) => {
         snap.forEach((doc) => {
-          index === 0 ? (documents = []) : console.log("");
           if (doc.data().email === document.userEmail) {
+            index === 0 ? (documents = []) : console.log("");
             documents.push(doc.data().photoURL);
           }
         });
