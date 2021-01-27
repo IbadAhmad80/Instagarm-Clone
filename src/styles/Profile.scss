@@ -28,8 +28,8 @@ body {
   margin: 0vh 0vw 0vh 6vw;
   grid-template-rows: minmax(30px, 60px);
 
-  .user-display-photo,
-  .user-display-photo-1 {
+  .user-display-photo {
+    position: fixed;
     width: 110px;
     height: 110px;
     border-radius: 50%;
@@ -42,26 +42,27 @@ body {
     padding: 0px 0px 0px 2px;
     margin: 20px 4px 0px 4px;
   }
-  // .user-display-photo-1 {
-  //   width: 110px;
-  //   height: 110px;
-  //   border-radius: 50%;
-  //   grid-column: 1;
-  //   background-color: rgb(102, 102, 102);
-  //   font-size: 24px;
-  //   color: white;
-  //   text-align: center;
-  //   line-height: 110px;
-  //   padding: 0px 0px 0px 2px;
-  //   margin: 20px 4px 0px 4px;
-  // }
+  .user-display-photo-1 {
+    position: fixed;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    grid-column: 1;
+    background-color: rgb(102, 102, 102);
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    line-height: 110px;
+    padding: 0px 0px 0px 2px;
+    margin: -36px 4px 0px 4px;
+  }
   .label:hover {
     .overlay {
       opacity: 0.75;
     }
   }
   .overlay {
-    margin: -127px 2px 0px 4px;
+    margin: -36px 2px 0px 4px;
     color: #f1f1f1;
     // width: 5.5%;
     width: 104px;

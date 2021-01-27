@@ -40,7 +40,6 @@ export default function FollowersFeed() {
   return (
     <div style={{ margin: "0vh 7vw 4vh 7vw" }}>
       {" "}
-      {/* <div className="followed-heading">Persons You follow</div> */}
       <div
         style={{
           display: "flex",

@@ -19,6 +19,7 @@ export const accountReducer = (reducer_state = state, action) => {
 
     case "SIGNOUT":
       reducer_state = {};
+
       return reducer_state;
     default:
       return reducer_state;
@@ -30,6 +31,10 @@ export const followerReducer = (reducer_state = followers, action) => {
     case "FOLLOWERLIST":
       reducer_state = action.payload.followerList;
       return reducer_state;
+    case "SIGNOUT":
+      reducer_state = [];
+      return reducer_state;
+
     default:
       return reducer_state;
   }

@@ -24,7 +24,8 @@ const Posts = () => {
       $(".comment-form").slideUp(5, "linear");
     }
   });
-  console.log("changes photos", photos);
+  // console.log("changes photos", photos);
+  console.log(followers);
 
   const getUpperCaseUserName = (name) => {
     let userName = name.split(" ")[0].charAt(0).toUpperCase();

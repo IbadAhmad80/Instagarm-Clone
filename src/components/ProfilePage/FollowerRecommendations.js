@@ -5,12 +5,16 @@ import { useAllUsers, useFollowers } from "../../customHooks/useFollowers";
 import { useSelector, useDispatch } from "react-redux";
 import { imageStyle_1 } from "../../FirebaseConfig";
 import { followerList } from "../redux/actions";
+import { useLocation } from "react-router-dom";
+
 // import { TiTick } from "react-icons/ti";
 
 export default function FollowerRecommendations() {
+  const location = useLocation();
   const dispatch = useDispatch();
   const { docs } = useAllUsers("users");
   const email = useSelector((state) => state.account.email);
+  const followers_list = useSelector((state) => state.follower);
   const { followers } = useFollowers(docs);
   const [followerStatus, setFollowerStatus] = useState([]);
 
@@ -30,7 +34,9 @@ export default function FollowerRecommendations() {
         : console.log("did not recieved data yet", followers);
       setFollowerStatus(status);
     }
-    dispatch(followerList(emails));
+    location.friendsType && location.friendsType == "all"
+      ? dispatch(followerList(emails))
+      : console.log("");
   }, [followers]);
 
   const handleFollower = async (index, id) => {

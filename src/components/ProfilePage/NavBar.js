@@ -147,6 +147,7 @@ export default function NavBar() {
             history.push({
               pathname: "./friendsFeed",
               type: "friends",
+              friendsType: "all",
             });
           }}
           style={{ cursor: "pointer", paddingRight: "2.6vw" }}
