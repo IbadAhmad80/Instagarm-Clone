@@ -174,8 +174,9 @@ const Posts = () => {
                         fontWeight: "lighter",
                       }}
                     >
-                      {" "}
-                      {doc.commentMakers.length}&nbsp;comments
+                      {doc.commentMakers.length > 1
+                        ? doc.commentMakers.length + " comments"
+                        : doc.commentMakers.length + " comment"}
                     </h6>
                   </span>
                   <h5
@@ -330,8 +331,9 @@ const Posts = () => {
                         fontWeight: "lighter",
                       }}
                     >
-                      {" "}
-                      {doc.commentMakers.length}&nbsp;comments
+                      {doc.commentMakers.length > 1
+                        ? doc.commentMakers.length + " comments"
+                        : doc.commentMakers.length + " comment"}
                     </h6>
                   </span>
                   <h5
@@ -489,8 +491,9 @@ const Posts = () => {
                       fontWeight: "lighter",
                     }}
                   >
-                    {" "}
-                    {doc.commentMakers.length}&nbsp;comments
+                    {doc.commentMakers.length > 1
+                      ? doc.commentMakers.length + " comments"
+                      : doc.commentMakers.length + " comment"}
                   </h6>
                 </span>
                 <h5

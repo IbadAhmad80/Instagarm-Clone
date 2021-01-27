@@ -29,7 +29,6 @@ body {
   grid-template-rows: minmax(30px, 60px);
 
   .user-display-photo {
-    position: fixed;
     width: 110px;
     height: 110px;
     border-radius: 50%;
@@ -43,7 +42,6 @@ body {
     margin: 20px 4px 0px 4px;
   }
   .user-display-photo-1 {
-    position: fixed;
     width: 110px;
     height: 110px;
     border-radius: 50%;
@@ -54,27 +52,28 @@ body {
     text-align: center;
     line-height: 110px;
     padding: 0px 0px 0px 2px;
-    margin: -36px 4px 0px 4px;
+    margin: 10px 4px 0px 4px;
   }
+
   .label:hover {
     .overlay {
       opacity: 0.75;
     }
   }
   .overlay {
-    margin: -36px 2px 0px 4px;
+    margin: -110px 2px 0px 4px;
     color: #f1f1f1;
     // width: 5.5%;
     width: 104px;
-    height: 80px;
+    height: 63.5px;
     border-radius: 52%;
     transition: 0.5s ease;
     opacity: 0;
-    color: white;
+    color: black;
     font-size: 22px;
-    padding: 30px 4px 0px 4px;
+    padding: 46px 4px 0px 4px;
     text-align: center;
-    background-color: rgb(102, 102, 102);
+    background-color: rgb(161, 171, 172);
   }
 
   .user-display-name {
@@ -302,8 +301,7 @@ body {
   opacity: 0;
 }
 .label {
-  display: block;
-  line-height: 50px;
+  line-height: 10px;
   color: var(--primary);
   font-weight: bold;
   font-size: 24px;

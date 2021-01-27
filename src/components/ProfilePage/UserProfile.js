@@ -33,7 +33,7 @@ export default function UserProfile() {
     }
   };
   return (
-    <div>
+    <div style={{ position: "fixed" }}>
       <div className="user-profile">
         <label className="label">
           <input type="file" onChange={handleChange} />
